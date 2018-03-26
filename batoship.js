@@ -1,13 +1,11 @@
 var inq = require("inquirer");
-
 var map = {
   width: 5,
   height: 5,
   playerLocations: [null, null],
   turns: 1,
-  powerUp: [null,null]
+  powerUp: [null, null]
 };
-
 (function initializePositions() {
   starting = [[0, 0], [0, 4], [4, 0], [4, 4]];
   let rando = Math.floor(Math.random() * starting.length);
@@ -49,38 +47,47 @@ function action() {
     for (var i = remove.length - 1; i > -1; i--) {
       possible.splice(remove[i], 1);
     }
-    var arr= [];
-    possible.forEach(function(data){
-        let string = data.join(',');
-        arr.push(string);
+    var arr = [];
+    possible.forEach(function(data) {
+      let string = data.join(",");
+      arr.push(string);
     });
-    inq.prompt([{
-        type:"list",
-        message:"Where you wanna go?",
-        name: "location",
-        choices:arr
-    }]).then(function(movement){
-        map.playerLocations[x]=movement.location.split(',');
+    inq
+      .prompt([
+        {
+          type: "list",
+          message: "Where you wanna go?",
+          name: "location",
+          choices: arr
+        }
+      ])
+      .then(function(movement) {
+        map.playerLocations[x] = movement.location.split(",");
         // console.log(map.playerLocations[x][0]);
         // console.log(typeof map.playerLocations[x][1]);
-        map.playerLocations[x][0]=parseInt(map.playerLocations[x][0]);
-        map.playerLocations[x][1]=parseInt(map.playerLocations[x][1]);
+        map.playerLocations[x][0] = parseInt(map.playerLocations[x][0]);
+        map.playerLocations[x][1] = parseInt(map.playerLocations[x][1]);
         console.log(typeof map.playerLocations[x][0]);
         console.log(typeof map.playerLocations[x][1]);
         console.log(map);
-       // attack();
-    });
+        // attack();
+      });
   }
 
   function attack() {
     var target;
-    inq.prompt([{
-        type:"input",
-        message:"where to attack? please enter in the format of (number,number)",
-        name:"target",
-    }]).then(function(attack){
+    inq
+      .prompt([
+        {
+          type: "input",
+          message:
+            "where to attack? please enter in the format of (number,number)",
+          name: "target"
+        }
+      ])
+      .then(function(attack) {
         console.log(attack.target);
-    });
+      });
     if (map.turns % 2 != 0) {
       if (target === map.playerLocations[1]) {
         gameover(1);
