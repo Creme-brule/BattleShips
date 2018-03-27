@@ -1,8 +1,13 @@
 {
   "name": "battleships",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "This project was made by Yonghee, Justin, and Lewis",
   "main": "batoship.js",
+=======
+  "description": "This project was made by Yonghee, Justin, and Lewis feature 1",
+  "main": "index.js",
+>>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,13 +15,36 @@
     "type": "git",
     "url": "git+https://github.com/Creme-brule/BattleShips.git"
   },
+<<<<<<< HEAD
   "author": "",
+=======
+  "author": "Creme Brulee",
+>>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Creme-brule/BattleShips/issues"
   },
   "homepage": "https://github.com/Creme-brule/BattleShips#readme",
   "dependencies": {
+<<<<<<< HEAD
     "inquirer": "^5.2.0"
+=======
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "npm": "^5.8.0",
+    "sequelize": "^4.37.4"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+  },
+  "jest": {
+    "automock": false,
+    "verbose": true,
+    "collectCoverageFrom": [
+      "titleize.js"
+    ],
+    "collectCoverage": true
+>>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
   }
 }

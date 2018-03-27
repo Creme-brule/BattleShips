@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/
 .vscode
 .idea/
@@ -5,4 +6,7 @@ node_modules/
 ~$*
 package-lock.json
 yarn.lock
+=======
+node_modules
+>>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
 .env
