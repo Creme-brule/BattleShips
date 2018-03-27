@@ -1,13 +1,8 @@
 {
   "name": "battleships",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "This project was made by Yonghee, Justin, and Lewis",
-  "main": "batoship.js",
-=======
   "description": "This project was made by Yonghee, Justin, and Lewis feature 1",
   "main": "index.js",
->>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
   "scripts": {
     "test": "jest"
   },
@@ -15,20 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/Creme-brule/BattleShips.git"
   },
-<<<<<<< HEAD
-  "author": "",
-=======
   "author": "Creme Brulee",
->>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Creme-brule/BattleShips/issues"
   },
   "homepage": "https://github.com/Creme-brule/BattleShips#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "inquirer": "^5.2.0"
-=======
+    "inquirer": "^5.2.0",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
@@ -46,6 +35,5 @@
       "titleize.js"
     ],
     "collectCoverage": true
->>>>>>> cf0aac99385c2f56223a02d1dc8e9f63dc0502de
   }
 }
