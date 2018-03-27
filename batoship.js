@@ -6,14 +6,15 @@ var map = {
   turns: 1,
   powerUp: [null, null]
 };
-(function initializePositions() {
+function initializePositions() {
   starting = [[0, 0], [0, 4], [4, 0], [4, 4]];
   let rando = Math.floor(Math.random() * starting.length);
   map.playerLocations[0] = starting[rando];
   starting.splice(rando, 1);
   map.playerLocations[1] =
     starting[Math.floor(Math.random() * starting.length)];
-})();
+}
+initializePositions();
 console.log(map);
 action();
 function action() {
@@ -67,10 +68,14 @@ function action() {
         // console.log(typeof map.playerLocations[x][1]);
         map.playerLocations[x][0] = parseInt(map.playerLocations[x][0]);
         map.playerLocations[x][1] = parseInt(map.playerLocations[x][1]);
+        if(map.playerLocations[0][0]==map.playerLocations[1][0]&&map.playerLocations[0][1]==map.playerLocations[1][1]){
+          console.log("\n collision BITCH! \n");
+          initializePositions();
+        }
         console.log(typeof map.playerLocations[x][0]);
         console.log(typeof map.playerLocations[x][1]);
         console.log(map);
-        // attack();
+        
       });
   }
 
@@ -87,25 +92,19 @@ function action() {
       ])
       .then(function(attack) {
         console.log(attack.target);
+        console.log(typeof attack.target);
+        
+        if (map.turns % 2 != 0) {
+          if (target === map.playerLocations[1]) {
+            gameover(1);
+          } else {
+          }
+        } else {
+          if (target === map.playerLocations[0]) {
+            gameover();
+          } else {
+          }
+        }
       });
-    if (map.turns % 2 != 0) {
-      if (target === map.playerLocations[1]) {
-        gameover(1);
-      } else {
-      }
-    } else {
-      if (target === map.playerLocations[0]) {
-        gameover();
-      } else {
-      }
-    }
-
-    function gameover(input) {
-      if (input == 1) {
-        console.log("PLAYER 1 WINS");
-      } else {
-        console.log("PLAYER 2 WINS");
-      }
-    }
   }
 }
