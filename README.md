@@ -1,5 +1,7 @@
 # BattleShips
 This project was made by Yonghee, Justin, and Lewis
-feature 1
 
-changes
+#.env setup:
+DB_HOST=host
+DB_USER=user
+DB_PASSWORD=password
