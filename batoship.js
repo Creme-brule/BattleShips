@@ -21,7 +21,6 @@ console.log(map);
 action();
 function action() {
   move();
-  map.turns++;
   function move() {
     var x;
     if (map.turns % 2 != 0) {
@@ -98,18 +97,23 @@ function action() {
         target=attack.cord.split(",");
         console.log(target);
         console.log(typeof target);
+        target[0]=parseInt(target[0]);
+        target[1]=parseInt(target[1]);
+        console.log(target);
         if (map.turns % 2 != 0) {
-          if (target === map.playerLocations[1]) {
+          if (target[0] == map.playerLocations[1][0] && target[1] == map.playerLocations[1][1]) {
             console.log("player 1 wins");
             map.gameover=true;
           } else {
+            map.turns++;
             action();
           }
         } else {
-          if (target === map.playerLocations[0]) {
+          if (target[0] == map.playerLocations[0][0] && target[1] == map.playerLocations[0][1]) {
             console.log("player 2 wins");
             map.gameover=true;
           } else {
+            map.turns++;
             action();
           }
         }
