@@ -1,10 +1,12 @@
 var inq = require("inquirer");
 var map = {
+  id: 1,
   width: 5,
   height: 5,
   playerLocations: [null, null],
   turns: 1,
-  powerUp: [null, null]
+  powerUp: [null, null],
+  gameover: false
 };
 function initializePositions() {
   starting = [[0, 0], [0, 4], [4, 0], [4, 4]];
@@ -75,7 +77,7 @@ function action() {
         console.log(typeof map.playerLocations[x][0]);
         console.log(typeof map.playerLocations[x][1]);
         console.log(map);
-        
+        attack();
       });
   }
 
@@ -87,22 +89,28 @@ function action() {
           type: "input",
           message:
             "where to attack? please enter in the format of (number,number)",
-          name: "target"
+          name: "cord"
         }
       ])
       .then(function(attack) {
-        console.log(attack.target);
-        console.log(typeof attack.target);
-        
+        console.log(attack.cord);
+        console.log(typeof attack.cord);
+        target=attack.cord.split(",");
+        console.log(target);
+        console.log(typeof target);
         if (map.turns % 2 != 0) {
           if (target === map.playerLocations[1]) {
-            gameover(1);
+            console.log("player 1 wins");
+            map.gameover=true;
           } else {
+            action();
           }
         } else {
           if (target === map.playerLocations[0]) {
-            gameover();
+            console.log("player 2 wins");
+            map.gameover=true;
           } else {
+            action();
           }
         }
       });
