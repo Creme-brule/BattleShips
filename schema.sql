@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS 'battleship_DB';
+CREATE DATABASE 'battleship_DB';
