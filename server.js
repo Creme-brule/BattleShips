@@ -9,10 +9,12 @@ var PORT = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(express.static("app/public"))
+
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-//require("./app/routes/**INSERTPATH**")(app);
+require("./app/routes/api-routes")(app);
 
 db.sequelize.sync({force: true}).then(function(){
     app.listen(PORT, function() {
