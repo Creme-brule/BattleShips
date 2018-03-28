@@ -1,6 +1,7 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser =  require("body-parser");
+var db = require("./app/models");
 
 var app = express();
 var PORT = process.env.PORT || 8080;
@@ -13,6 +14,8 @@ app.set("view engine", "handlebars");
 
 //require("./app/routes/**INSERTPATH**")(app);
 
-app.listen(PORT, function() {
-    console.log("App listening at PORT: " + PORT);
+db.sequelize.sync({force: true}).then(function(){
+    app.listen(PORT, function() {
+        console.log("App listening at PORT: " + PORT);
+    });
 });
