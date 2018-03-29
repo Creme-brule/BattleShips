@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
     <title>Passport with Sequelize</title>
+
 </head>
- 
+
 <body>
     <h2>Dashboard</h2>
     <h5>Hurray! you are logged in.</h5>
- 
+    <button id="createRoom">CREATE ROOM</button>
+    <button id="movement">Movement Test</button>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script> 
+        $("#createRoom").on("click", function () {
+            $.post("api/new", function (data) {
+                console.log(data);
+                console.log('\n  o \n  o \n o \n o');
+            });
+
+        });
+
+        $("#movement").on("click", function () {
+            var url;
+            $.post(url, function (data) {
+                console.log(data);
+                console.log('\n  o \n  o \n o \n o');
+            });
+
+        });
+
+
+    </script>
+
 </body>
- 
+
 </html>
