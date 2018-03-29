@@ -4,7 +4,8 @@
   "description": "This project was made by Yonghee, Justin, and Lewis feature 1",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "",
+    "start" :"node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "inquirer": "^5.2.0",
+    "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "npm": "^5.8.0",
     "passport": "^0.4.0",

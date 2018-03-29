@@ -5,7 +5,8 @@ var passport = require("passport");
 var session = require("express-session");
 var env = require("dotenv").load();
 var app = express();
-var db = require('./app/models');
+var userModels = require('./app/models/user.js');
+
 var path = require('path');
 var PORT = process.env.PORT || 8080;
 
@@ -31,14 +32,16 @@ app.set("view engine", "handlebars");
 
 //Routes 
 //require("./app/routes/api-routes.js")(app);
-var authRoute = require('./app/routes/auth.js')(app);
-
-
-app.get("/", function(req, res) {
+var models = require('./app/models');
+var authRoute = require('./app/routes/auth.js')(app, passport);
+//load passport strategies
+require('./app/config/passport/passport.js')(passport, models.user);
+console.log("77777777777777777"+models.user);
+app.get("/", function(req, res) {   
   res.send("Welcome to Passport with Sequelize");
 });
 
-db.sequelize.sync({ force: true }).then(function() {
+models.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening at PORT: " + PORT);
   });
