@@ -46,11 +46,18 @@ module.exports = function(sequelize, DataTypes) {
         status: {
             type: DataTypes.ENUM('active', 'inactive'),
             defaultValue: 'active'
-        }
+        },
+
+        user_wins: DataTypes.INTEGER,
+        user_loss: DataTypes.INTEGER,
+        user_inGame: DataTypes.BOOLEAN,
+        
  
  
     });
- 
+    User.associate = function(models) {
+        models.User.belongsTo(models.Room);
+    }
     return User;
  
 }
