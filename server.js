@@ -5,7 +5,6 @@ var passport = require("passport");
 var session = require("express-session");
 var env = require("dotenv").load();
 var app = express();
-var userModels = require('./app/models/user.js');
 
 var path = require('path');
 var PORT = process.env.PORT || 8080;
@@ -36,7 +35,6 @@ var models = require('./app/models');
 var authRoute = require('./app/routes/auth.js')(app, passport);
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
-console.log("77777777777777777"+models.user);
 app.get("/", function(req, res) {   
   res.send("Welcome to Passport with Sequelize");
 });
