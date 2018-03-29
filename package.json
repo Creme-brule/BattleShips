@@ -18,21 +18,14 @@
   },
   "homepage": "https://github.com/Creme-brule/BattleShips#readme",
   "dependencies": {
-<<<<<<< HEAD
     "bcrypt-nodejs": "0.0.3",
-=======
->>>>>>> 8cfabbfc3b74cfb74d8e1976b759abe8447c21a8
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-<<<<<<< HEAD
     "express-session": "^1.15.6",
     "inquirer": "^5.2.0",
     "mysql": "^2.15.0",
-=======
-    "inquirer": "^5.2.0",
->>>>>>> 8cfabbfc3b74cfb74d8e1976b759abe8447c21a8
     "mysql2": "^1.5.3",
     "npm": "^5.8.0",
     "passport": "^0.4.0",
