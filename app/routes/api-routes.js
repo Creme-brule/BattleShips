@@ -7,6 +7,7 @@ var test = {
   player1x: 3,
   player1y: 2
 };
+//TODO: FIND OUT WHY INSTEAD OF RES.RENDER YOU MUST DO REDIRECT FROM AJAX
 module.exports = function(app, passport) {
   app.get("/api/:mapId", function(req, res) {
     var mapId = req.params.mapId;
@@ -43,7 +44,7 @@ module.exports = function(app, passport) {
         .update({ RoomId: results.id }, { where: { id: player1Id } })
         .then(function(result) {
           console.log("\n room created \n");
-          res.json(results);
+          res.json(results.id);
         });
     });
   });
