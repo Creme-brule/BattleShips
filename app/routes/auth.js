@@ -1,6 +1,7 @@
 var authController = require("../controllers/authcontrollers.js");
 
 module.exports = function(app, passport) {
+  app.get("/",isLoggedIn,authController.dashboard);
   app.get("/signup", authController.signup);
   app.get("/dashboard", isLoggedIn, authController.dashboard);
   app.get("/signin", authController.signin);
@@ -26,7 +27,6 @@ module.exports = function(app, passport) {
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
-
     res.redirect("/signin");
   }
 };
