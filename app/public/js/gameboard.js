@@ -24,6 +24,6 @@ $(function() {
         $("#game-board").append($board);
     });
     $(document).on("click","button", function (data) {
-        console.log(this);
+        console.log($(this).data("coord"));
     })
 });
