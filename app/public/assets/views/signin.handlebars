@@ -1,26 +1,22 @@
-<!DOCTYPE html>
-<html>
- 
-<head>
-    <title></title>
-</head>
- 
-<body>
 
-    <a href="/signup">SIGNUP</a>
+<!-- remember to change element id from jews-->
+<div class="mainDiv">
+        <div class="popUpWindow">
+            <a href="/signup">SIGNUP</a>
+            <form id="signin" name="signin" method="post" action="signin">
+                <div class="form-group">
+                    <label for="jews">Username</label>
+                    <input class="text" name="jews" type="text" />
+                    <label for="password">Password</label>
+                    <input name="password" type="password" />
+                </div>
 
-    <form id="signin" name="signin" method="post" action="signin">
-        <label for="jews">username</label>
-        <input class="text" name="jews" type="text" />
-        <label for="password">Password</label>
-        <input name="password" type="password" />
-        <input class="btn" type="submit" value="Sign In" />
-    </form>
-    <script>
+                <button class="waves-effect waves-light btn red" id ="btn" type="submit" value="Login">Login</button>
+                </form>
+        </div>
+        
+</div>
+ <script>
         var taco = localStorage.getItem('userId');
         console.log(taco);
-    </script>
-
-</body>
- 
-</html>
+</script>

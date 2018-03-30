@@ -8,8 +8,8 @@
 
 <body>
     <h2>Dashboard</h2>
-    <h5>Hurray! you are logged in.{{userName}}</h5> 
-    <div id = "infoPasser" style="display:none">{{userId}}</div> 
+    <h5>Hurray! you are logged in.{{userName}}</h5>
+    <div id="infoPasser" style="display:none">{{userId}}</div>
     <button id="createRoom">CREATE ROOM</button>
     <button id="movement">Movement Test</button>
 
@@ -17,7 +17,7 @@
         crossorigin="anonymous"></script>
     <script> 
         var passed = $("#infoPasser").text();
-        localStorage.setItem("userId",passed);
+        localStorage.setItem("userId", passed);
         $("#infoPasser").remove();
         $("#createRoom").on("click", function () {
             $.post("api/new", function (data) {
@@ -26,15 +26,16 @@
             });
 
         });
-    var x = localStorage.getItem("userId");
-    console.log('\n\n\n\n'+x);
+        var x = localStorage.getItem("userId");
+        console.log('\n\n\n\n' + x);
         $("#movement").on("click", function () {
-            var url;
-            $.post(url, function (data) {
-                console.log(data);
-                console.log('\n  o \n  o \n o \n o');
-            });
-
+                var address = "/api/new/1";
+                $.ajax({
+                    type: "PUT",
+                    url: address,
+                }).then(function (data) {
+                    console.log(data);
+                });
         });
 
 

@@ -20,6 +20,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+app.use(express.static("app/public/"));
 app.set('views','./app/public/assets/views');
 app.engine("handlebars", exphbs({ 
     defaultLayout: "main",
@@ -30,7 +31,8 @@ app.set("view engine", "handlebars");
 
 
 //Routes 
-//require("./app/routes/api-routes.js")(app);
+require("./app/routes/api-routes.js")(app, passport);
+require("./app/routes/html-routes.js")(app);
 var models = require('./app/models');
 var authRoute = require('./app/routes/auth.js')(app, passport);
 var apiRoute = require('./app/routes/api-routes.js')(app, passport);
