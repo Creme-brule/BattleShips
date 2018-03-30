@@ -20,10 +20,17 @@
         localStorage.setItem("userId", passed);
         $("#infoPasser").remove();
         $("#createRoom").on("click", function () {
-            $.post("api/new", function (data) {
-                console.log(data);
-                console.log('\n  o \n  o \n o \n o');
-            });
+            $.ajax({
+                url:"/api/new",
+                type:"POST",
+                data: {
+                    player1Id: localStorage.getItem("userId")
+                }
+            }).then(function(data){
+                console.log("\n\n\n\n"+data);
+            }).then(function(results){
+                res.render('gameboard',{});
+            })
 
         });
         var x = localStorage.getItem("userId");
