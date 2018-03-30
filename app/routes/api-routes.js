@@ -23,15 +23,20 @@ module.exports = function(app, passport) {
     });
 
     app.post("/api/new", isLoggedIn,function(req,res) {
+        starting = [[0, 0], [0, 4], [4, 0], [4, 4]];
+        var rando = Math.floor(Math.random() * starting.length);
+        var player1Cords = starting[rando];
+        starting.splice(rando,1);
+        var player2Cords=starting[Math.floor(Math.random()*starting.length)];
         db.Room.create({
             turns:1,
             height:5,
             width:5,
             gameover:false,
-            player1x:0,
-            player1y:0,
-            player2x:1,
-            player2y:1
+            player1x:player1Cords[0],
+            player1y:player1Cords[1],
+            player2x:player2Cords[0],
+            player2y:player2Cords[1]
         }).then(function(results){
         console.log("\n room created \n" );
         res.json(results);
