@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
             notEmpty: true
         },
  
-        username: {
+        nickname: {
             type: DataTypes.TEXT
         },
  
@@ -27,11 +27,8 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT
         },
 
-        email: { 
+        username: { 
             type:DataTypes.STRING,
-            validate: {
-                isEmail:true
-            }
         },
  
         password: {
