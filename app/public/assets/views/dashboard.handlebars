@@ -21,28 +21,28 @@
         $("#infoPasser").remove();
         $("#createRoom").on("click", function () {
             $.ajax({
-                url:"/api/new",
-                type:"POST",
+                url: "/api/new",
+                type: "POST",
                 data: {
                     player1Id: localStorage.getItem("userId")
                 }
-            }).then(function(data){
-                console.log("\n\n\n\n"+data);
-            }).then(function(results){
-                res.render('gameboard',{});
-            })
+            }).then(function (data) {
+                console.log("\n\n\n\n" + data);
+            }).then(function (results) {
+                res.render('gameboard', {});
+            });
 
         });
         var x = localStorage.getItem("userId");
         console.log('\n\n\n\n' + x);
         $("#movement").on("click", function () {
-                var address = "/api/new/1";
-                $.ajax({
-                    type: "PUT",
-                    url: address,
-                }).then(function (data) {
-                    console.log(data);
-                });
+            var address = "/api/new/1";
+            $.ajax({
+                type: "PUT",
+                url: address,
+            }).then(function (data) {
+                console.log(data);
+            });
         });
 
 
