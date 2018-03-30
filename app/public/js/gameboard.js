@@ -9,6 +9,7 @@ $(function() {
                 let $li = $("<li>");
                 $li.addClass("board");
                 let $btn = $("<button>");
+                $btn.addClass("board-btn");
                 $btn.data("coord", `${x},${y}`);
                 if (x === parseInt(data.player1x) && y === parseInt(data.player1y)) {
                     $btn.attr("id", "ship");
@@ -23,7 +24,9 @@ $(function() {
         }
         $("#game-board").append($board);
     });
-    $(document).on("click","button", function (data) {
-        console.log($(this).data("coord"));
+    $(document).on("click",".board-btn", function (event) {
+        $(".board-btn").not(this).removeClass("attack");
+        $(this).toggleClass("attack");
+        event.preventDefault();
     })
 });
