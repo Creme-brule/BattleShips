@@ -1,9 +1,12 @@
+
+<!-- remember to change element id from jews-->
 <div class="mainDiv">
         <div class="popUpWindow">
+            <a href="/signup">SIGNUP</a>
             <form id="signin" name="signin" method="post" action="signin">
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input class="text" name="email" type="text" />
+                    <label for="jews">Username</label>
+                    <input class="text" name="jews" type="text" />
                     <label for="password">Password</label>
                     <input name="password" type="password" />
                 </div>
@@ -11,4 +14,9 @@
                 <button class="waves-effect waves-light btn red" id ="btn" type="submit" value="Login">Login</button>
                 </form>
         </div>
+        
 </div>
+ <script>
+        var taco = localStorage.getItem('userId');
+        console.log(taco);
+</script>
