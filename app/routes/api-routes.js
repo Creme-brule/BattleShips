@@ -1,41 +1,54 @@
 var authController = require("../controllers/authcontrollers.js");
 var db = require("../models");
+var test = {
+    turns: 1,
+    height: 5,
+    width: 5,
+    player1x: 3,
+    player1y: 2
+}
 module.exports = function(app, passport) {
 
-    app.get("/api/:map", function(req, res) {
-        var mapId = req.params.map;
+    app.get("/api/:mapId", function(req, res) {
+        var mapId = req.params.mapId;
         if (mapId) {
             db.Room.findOne({
                 where: {
                     id: mapId
                 }
             }).then(function(dbRoom) {
-                res.json(dbRoom)        
+                res.json(test);        
             });
         }
     });
-//   app.get("/signup", authController.signup);
-//   app.get("/dashboard", isLoggedIn, authController.dashboard);
-//   app.get("/signin", authController.signin);
-//   app.get("/logout", authController.logout);
 
-//   app.post(
-//     "/signup",
-//     passport.authenticate("local-signup", {
-//       successRedirect: "/dashboard",
+    app.post("/api/new", isLoggedIn,function(req,res) {
+        db.Room.create({
+            turns:1,
+            height:5,
+            width:5,
+            gameover:false,
+            player1x:0,
+            player1y:0,
+            player2x:1,
+            player2y:1
+        }).then(function(results){
+        console.log("\n room created \n" );
+        res.json(results);
+        });
+    });
 
-//       failureRedirect: "/signup"
-//     })
-//   );
+    app.put("/api/new/:param?",isLoggedIn,function(req,res){
+        db.Room.update({
+            player1x:4,
+            player1y:4
+        },{
+            where:{
+                id:req.params.param
+            }
+        });
+    });
 
-//   app.post(
-//     "/signin",
-//     passport.authenticate("local-signin", {
-//       successRedirect: "/dashboard",
-
-//       failureRedirect: "/signin"
-//     })
-//   );
 
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
