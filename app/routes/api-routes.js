@@ -1,16 +1,23 @@
 var authController = require("../controllers/authcontrollers.js");
 var db = require("../models");
+var test = {
+    turns: 1,
+    height: 5,
+    width: 5,
+    player1x: 3,
+    player1y: 2
+}
 module.exports = function(app, passport) {
 
-    app.get("/api/:map", function(req, res) {
-        var mapId = req.params.map;
+    app.get("/api/:mapId", function(req, res) {
+        var mapId = req.params.mapId;
         if (mapId) {
             db.Room.findOne({
                 where: {
                     id: mapId
                 }
             }).then(function(dbRoom) {
-                res.json(dbRoom)        
+                res.json(test);        
             });
         }
     });
