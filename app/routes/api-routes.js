@@ -4,8 +4,10 @@ var test = {
     turns: 1,
     height: 5,
     width: 5,
-    player1x: 3,
-    player1y: 2
+    playerx: 3,
+    playery: 2,
+    moves: ["3,1", "4,2", "3,3", "2,2"]
+    //[up, right, down, left]
 }
 module.exports = function(app, passport) {
 

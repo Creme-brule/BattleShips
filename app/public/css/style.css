@@ -4,6 +4,10 @@ ul {
     padding: 0;
 }
 
+.moveli {
+    display: inline;
+}
+
 .water {
     background-image: url("../images/water.gif");
     background-repeat: repeat;
@@ -11,9 +15,17 @@ ul {
 }
 
 #ship {
+    height: 50px;
+    width: 50px;
     background-image: url("../images/patrolv.gif"), url("../images/water.gif");
     background-repeat: no-repeat, repeat;
     background-position: center;
+}
+
+.move-btn {
+    height: 50px;
+    width: 50px;
+    text-align: center;
 }
 
 .board-btn {
