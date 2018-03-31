@@ -5,7 +5,6 @@ var passport = require("passport");
 var session = require("express-session");
 var env = require("dotenv").load();
 var app = express();
-
 var path = require('path');
 var PORT = process.env.PORT || 8080;
 

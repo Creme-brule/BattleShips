@@ -39,7 +39,7 @@ module.exports = function(passport, user) {
         }).then(function(user) {
           if (user) {
             return done(null, false, {
-              message: "That email is already taken"
+              message: "That username is already taken"
             });
           } else {
             var userPassword = generateHash(password);
@@ -98,7 +98,7 @@ module.exports = function(passport, user) {
           .then(function(user) {
             if (!user) {
               return done(null, false, {
-                message: "Email does not exist"
+                message: "user does not exist"
               });
             }
 
