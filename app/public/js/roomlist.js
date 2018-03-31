@@ -1,5 +1,5 @@
 $(function() {
-    $('.room-join').on("click",function(){
+    $('#room-join').on("click",function(){
         var userId = localStorage.getItem("userId");
         console.log(userId);
         console.log("asdf"+$(this).attr('data-id'));

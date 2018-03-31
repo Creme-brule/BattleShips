@@ -1,5 +1,6 @@
 var authController = require("../controllers/authcontrollers.js");
 var db = require("../models");
+var op = db.Sequelize.Op;
 var test = {
   turns: 1,
   height: 5,
@@ -64,6 +65,17 @@ module.exports = function(app, passport) {
         console.log(data);
         res.json(data);
     });
+  });
+
+  app.get("/inGame/:userId",isLoggedIn,function(req,res){
+    db.Room.findOne({
+      where: {
+        gameover:false,
+        [op.or]:[{player1_id:req.params.userId},{player2_id:req.params.userId}]
+      }
+    }).then(function(data){
+      res.json(data);
+    })
   });
 
   function isLoggedIn(req, res, next) {
