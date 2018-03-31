@@ -81,7 +81,6 @@ ul {
     background-position: center;
 }
 
-<<<<<<< HEAD
 .move-btn {
     height: 50px;
     width: 50px;
@@ -92,8 +91,6 @@ ul {
     height: 50px;
     width: 50px;
 }
-=======
->>>>>>> develop
 
 .attack {
     background-image: url("../images/target.gif"), url("../images/water.gif");
