@@ -48,6 +48,9 @@ module.exports = function(sequelize, DataTypes) {
         user_wins: DataTypes.INTEGER,
         user_loss: DataTypes.INTEGER,
         user_inGame: DataTypes.BOOLEAN,
+        playerx: DataTypes.INTEGER,
+        playery: DataTypes.INTEGER,
+        possiblemoves: DataTypes.STRING
         
  
  
