@@ -1,9 +1,8 @@
-
 #teamLogo {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 25%;
+    width: 25%
 }
 
 #signin {
@@ -21,7 +20,7 @@
     margin-top: 30px;
 }
 
-#button1, #button2, #button3 {
+#button1, #button2, #button3, #room-join, #createRoom, #roomList {
     border-radius: 5px;
 }
 
@@ -51,9 +50,37 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    
+}    
+
+#dashPopUp {
+    border-radius: 25px;
+    background: whitesmoke;
+    padding: 20px;
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 50px;
 }
 
+#roomPopUp {
+    border-radius: 25px;
+    background: whitesmoke;
+    padding: 20px;
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 50px;
+}
+
+
+
+/*CSS for Gameboard */
 
 
 /* CSS for Gameboard Handlebar */
