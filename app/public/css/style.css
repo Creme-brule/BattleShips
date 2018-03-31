@@ -81,6 +81,13 @@ ul {
     background-position: center;
 }
 
+.chosen-move {
+    background-image: url("../images/patrolv.gif"), url("../images/water.gif");
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    opacity: 0.6;
+}
+
 .move-btn {
     height: 50px;
     width: 50px;

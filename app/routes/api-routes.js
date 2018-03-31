@@ -5,9 +5,9 @@ var test = {
     turns: 1,
     height: 5,
     width: 5,
-    playerx: 3,
-    playery: 2,
-    moves: ["3,1", "4,2", "3,3", "2,2"]
+    playerx: 4,
+    playery: 3,
+    moves: ["3,3", "4,2", "4,4", "5,3"]
     //[up, right, down, left]
 }
 module.exports = function(app, passport) {
