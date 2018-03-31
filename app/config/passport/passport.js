@@ -24,30 +24,28 @@ module.exports = function(passport, user) {
     "local-signup",
     new LocalStrategy(
       {
-        usernameField: "email",
+        usernameField: "jews",
         passwordField: "password",
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
-      function(req, email, password, done) {
+      function(req, hotdog, password, done) {
         var generateHash = function(password) {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
         };
-        // DELETE LATER
-        console.log("test log" + User);
         User.findOne({
           where: {
-            email: email
+            nickname: hotdog
           }
         }).then(function(user) {
           if (user) {
             return done(null, false, {
-              message: "That email is already taken"
+              message: "That username is already taken"
             });
           } else {
             var userPassword = generateHash(password);
 
             var data = {
-              email: email,
+              nickname: hotdog,
 
               password: userPassword,
 
@@ -78,14 +76,14 @@ module.exports = function(passport, user) {
       {
         // by default, local strategy uses username and password, we will override with email
 
-        usernameField: "email",
+        usernameField: "jews",
 
         passwordField: "password",
 
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
 
-      function(req, email, password, done) {
+      function(req, hotdog, password, done) {
         var User = user;
 
         var isValidPassword = function(userpass, password) {
@@ -94,13 +92,13 @@ module.exports = function(passport, user) {
 
         User.findOne({
           where: {
-            email: email
+            nickname: hotdog
           }
         })
           .then(function(user) {
             if (!user) {
               return done(null, false, {
-                message: "Email does not exist"
+                message: "user does not exist"
               });
             }
 

@@ -5,7 +5,6 @@ var passport = require("passport");
 var session = require("express-session");
 var env = require("dotenv").load();
 var app = express();
-
 var path = require('path');
 var PORT = process.env.PORT || 8080;
 
@@ -35,7 +34,7 @@ require("./app/routes/api-routes.js")(app, passport);
 require("./app/routes/html-routes.js")(app);
 var models = require('./app/models');
 var authRoute = require('./app/routes/auth.js')(app, passport);
-//var newRoute = require('myfile.js')(app,passport);
+var apiRoute = require('./app/routes/api-routes.js')(app, passport);
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
 
