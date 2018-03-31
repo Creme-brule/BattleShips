@@ -1,3 +1,62 @@
+
+#teamLogo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+
+#signin {
+   margin: 70px auto;
+   width: 70%;
+  }
+
+#signup {
+    margin: 0 auto;
+    width: 70%
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#button1, #button2, #button3 {
+    border-radius: 5px;
+}
+
+.popUp {
+    border-radius: 25px;
+    background: whitesmoke;
+    padding: 20px;
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    left: 38%;
+    top: 20%;
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 50px;
+}
+
+.input-field input[type=text]:focus, .input-field input[type=password]:focus  {
+    border-bottom: 1px solid #000;
+    
+    box-shadow: 0 1px 0 0 #000;
+  }
+
+
+.container {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    
+}
+
+
+
+/* CSS for Gameboard Handlebar */
 ul {
     list-style: none;
     display: inline-block;
@@ -16,10 +75,6 @@ ul {
     background-position: center;
 }
 
-button {
-    height: 50px;
-    width: 50px;
-}
 
 .water:hover {
     background-image: url("../images/target.gif"), url("../images/water.gif");
@@ -27,3 +82,5 @@ button {
     background-position: center, center;
     background-size: cover;
 }
+
+

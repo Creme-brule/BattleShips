@@ -1,44 +1,40 @@
-<!DOCTYPE html>
-<html>
+<div class="container">
 
-<head>
-    <title>Passport with Sequelize</title>
-
-</head>
-
-<body>
-    <h2>Dashboard</h2>
-    <h5>Hurray! you are logged in.{{userName}}</h5>
+    <h2 id="dashboard">{{userName}}'s Dashboard</h2>
     <div id="infoPasser" style="display:none">{{userId}}</div>
-    <button id="createRoom">CREATE ROOM</button>
-    <button id="roomList">JOIN ROOMS</button>
-    {{!-- <button id="movement">Movement Test</button> --}}
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script>
-        //TODO: FIND OUT WHY INSTEAD OF RES.RENDER YOU MUST DO REDIRECT FROM AJAX
-        var passed = $("#infoPasser").text();
-        localStorage.setItem("userId", passed);
-        $("#infoPasser").remove();
-        $("#createRoom").on("click", function () {
-            $.ajax({
-                url: "/api/new",
-                type: "POST",
-                data: {
-                    player1Id: localStorage.getItem("userId")
-                }
-            }).then(function (data) {
-                console.log(data);
-                location.href = "/map/"+data;
+
+    <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
+    <button class="waves-effect waves-light btn black" id="roomList" type="submit">JOIN ROOMS</butt>
+
+        {{!--
+        <button id="movement">Movement Test</button> --}}
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script>
+            //TODO: FIND OUT WHY INSTEAD OF RES.RENDER YOU MUST DO REDIRECT FROM AJAX
+            var passed = $("#infoPasser").text();
+            localStorage.setItem("userId", passed);
+            $("#infoPasser").remove();
+            $("#createRoom").on("click", function () {
+                $.ajax({
+                    url: "/api/new",
+                    type: "POST",
+                    data: {
+                        player1Id: localStorage.getItem("userId")
+                    }
+                }).then(function (data) {
+                    console.log(data);
+                    location.href = "/map/" + data;
+                });
             });
-        });
-        var x = localStorage.getItem("userId");
-        console.log('\n\n\n\n localstorage value is :' + x);
-        $("#roomList").on("click",function(){
-            console.log("yayayay");
-            location.href = "/dashboard/rooms"
-        })
+            var x = localStorage.getItem("userId");
+            console.log('\n\n\n\n localstorage value is :' + x);
+            $("#roomList").on("click", function () {
+                console.log("yayayay");
+                location.href = "/dashboard/rooms"
+            })
 
     //    $("#movement").on("click", function () {
     //        var address = "/api/new/1";
@@ -50,9 +46,8 @@
     //        });
     //    });
 
+        </script>
 
-    </script>
 
-</body>
 
-</html>
+     
