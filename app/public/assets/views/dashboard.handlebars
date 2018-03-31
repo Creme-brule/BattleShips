@@ -1,46 +1,37 @@
-<!DOCTYPE html>
-<html>
+<div class="container">
 
-<head>
-    <title>Passport with Sequelize</title>
-
-</head>
-
-<body>
-    <h2>Dashboard</h2>
-    <h5>Hurray! you are logged in.{{userName}}</h5>
+    <h2 id="dashboard">{{userName}}'s Dashboard</h2>
     <div id="infoPasser" style="display:none">{{userId}}</div>
-    <button id="createRoom">CREATE ROOM</button>
-    <button id="movement">Movement Test</button>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script> 
-        var passed = $("#infoPasser").text();
-        localStorage.setItem("userId", passed);
-        $("#infoPasser").remove();
-        $("#createRoom").on("click", function () {
-            $.post("api/new", function (data) {
-                console.log(data);
-                console.log('\n  o \n  o \n o \n o');
-            });
 
-        });
-        var x = localStorage.getItem("userId");
-        console.log('\n\n\n\n' + x);
-        $("#movement").on("click", function () {
-                var address = "/api/new/1";
-                $.ajax({
-                    type: "PUT",
-                    url: address,
-                }).then(function (data) {
-                    console.log(data);
-                });
+    <button class="waves-effect waves-light btn black" id="createRoom" type="submit">Create Room</button>
+    <button class="waves-effect waves-light btn black" id="movementTest" type="submit">Movement Test</butt>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script> 
+    var passed = $("#infoPasser").text();
+    localStorage.setItem("userId", passed);
+    $("#infoPasser").remove();
+    $("#createRoom").on("click", function () {
+        $.post("api/new", function (data) {
+            console.log(data);
+            console.log('\n  o \n  o \n o \n o');
         });
 
-
-    </script>
-
-</body>
-
-</html>
+    });
+    var x = localStorage.getItem("userId");
+    console.log('\n\n\n\n' + x);
+    $("#movement").on("click", function () {
+        var address = "/api/new/1";
+        $.ajax({
+            type: "PUT",
+            url: address,
+        }).then(function (data) {
+            console.log(data);
+        });
+    });
+</script>
