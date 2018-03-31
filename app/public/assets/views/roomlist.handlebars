@@ -1,0 +1,13 @@
+<div id="game-board"></div>
+
+<h1>Room List</h1>
+
+<ul>
+  {{#each rooms}}
+      {{> rooms/room-block}}
+  {{/each}}
+</ul>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+<script src="/js/roomlist.js" type="text/javascript"></script>
