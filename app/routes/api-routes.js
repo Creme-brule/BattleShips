@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
       });
     }
   });
-
+  //create a new room
   app.post("/api/new", isLoggedIn, function(req, res) {
     starting = [[0, 0], [0, 4], [4, 0], [4, 4]];
     var rando = Math.floor(Math.random() * starting.length);
@@ -48,19 +48,22 @@ module.exports = function(app, passport) {
         });
     });
   });
-
-  app.put("/api/new/:param?", isLoggedIn, function(req, res) {
+  //join a room
+  app.put("/api/room", isLoggedIn, function(req, res) {
+      console.log("\n\n\nblehbleh\n\n\n");
     db.Room.update(
       {
-        player1x: 4,
-        player1y: 4
+        player2_id:req.body.joiner
       },
       {
         where: {
-          id: req.params.param
+          id: req.body.roomid
         }
       }
-    );
+    ).then(function(data){
+        console.log(data);
+        res.json(data);
+    });
   });
 
   function isLoggedIn(req, res, next) {
