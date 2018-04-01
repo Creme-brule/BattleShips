@@ -20,7 +20,7 @@
 
         <div id="stats">
             <div id="mostWins">
-                <h4>LEADERBOARD</h4>
+                <h4 id="leaderboard">LEADERBOARD</h4>
         </div>
     </div>
     </div>
@@ -50,6 +50,13 @@
                     url: "/stats"
                 }).then(function(results){
                     console.log(results);
+                    var leaders = results[0];
+                    for(var i = 0; i<leaders.length;i++)
+                    {
+                        var newDiv = $("<div>");
+                        newDiv.text(`${leaders[i].username.toUpperCase()} WITH ${leaders[i].user_wins} WINS!`)
+                        $("#leaderboard").append(newDiv);
+                    }
                 });
                 var createable = true;
                 $("#createRoom").on("click", function () {
