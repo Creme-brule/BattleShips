@@ -18,7 +18,11 @@ module.exports = function(app, passport) {
               turns: dbRoom.turns,
               height: dbRoom.height,
               width: dbRoom.width,
-              player_turn: dbRoom.player_turn
+              player_turn: dbRoom.player_turn,
+              waitFor2: false
+          }
+          if (dbRoom.turns == 0) {
+              response.waitFor2 = true;
           }
           if (userId == dbRoom.player1_id) {
                 response["player_id"] = dbRoom.player1_id;
@@ -198,7 +202,7 @@ module.exports = function(app, passport) {
     var player2Cords = starting[Math.floor(Math.random() * starting.length)];
     var player1Id = req.body.player1Id;
     db.Room.create({
-      turns: 1,
+      turns: 0,
       height: 5,
       width: 5,
       gameover: false,
@@ -229,7 +233,8 @@ module.exports = function(app, passport) {
     console.log("\n\n\nblehbleh\n\n\n");
     db.Room.update(
       {
-        player2_id: req.body.joiner
+        player2_id: req.body.joiner,
+        turns: 1
       },
       {
         returning: true,
