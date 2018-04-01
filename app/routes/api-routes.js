@@ -6,9 +6,7 @@ var test = {
   height: 5,
   width: 5,
   playerx: 4,
-  playery: 3,
-  moves: ["3,3", "4,2", "4,4", "5,3"]
-  //[up, right, down, left]
+  playery: 3
 };
 module.exports = function(app, passport) {
   app.get("/api/:mapId", function(req, res) {
