@@ -2,28 +2,32 @@
   <div class="popUp" id="roomPopUp">
 
 
-<ul>
-  {{#each rooms}} {{> rooms/room-block}} {{else}}
-  <h4 id="dashboard">NO ROOMS TO JOIN</h4>
-  <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
-  {{/each}}
-</ul>
+    <ul>
+      {{#each rooms}} {{> rooms/room-block}} {{else}}
+      <h4 id="dashboard">NO ROOMS TO JOIN</h4>
+      <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
+      {{/each}}
+    </ul>
+
+    <div class="logout">
+      <a href="/logout">
+        <button class="btn-floating btn-large waves-effect waves red darken-1" id="logoutRoom" title="Logout">
+          <i class="material-icons">exit_to_app</i>
+          Dashboard</button>
+      </a>
+    </div>
+
+    <div class="dashboard">
+      <a href="/dashboard">
+        <button class="btn-floating btn-large waves-effect waves green darken-1" id="toDash" title="Dashboard">
+          <i class="material-icons">home</i>
+          Log Out</button>
+      </a>
+    </div>
+
 
   </div>
-  <div class="logout">
-    <a href="/logout">
-      <button class="btn-floating btn-large waves-effect waves red darken-1" id="logoutRoom" title="Logout">
-        <i class="material-icons">exit_to_app</i>
-        Dashboard</button>
-    </a>
-  </div>
-  <div class="dashboard">
-    <a href="/dashboard">
-      <button class="btn-floating btn-large waves-effect waves green darken-1" id="toDash" title="Dashboard">
-        <i class="material-icons">home</i>
-        Log Out</button>
-    </a>
-  </div>
+
 </div>
 
 <script>

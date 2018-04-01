@@ -91,24 +91,25 @@
 }
 
 #logoutGame {
-    left: 60%;
-    bottom: -20px;
-}
-
-#logoutDash {
-    left: 55%;
-    top: -150px;
-}
-
-#logoutRoom {
-    left: 21%;
-    top: -287px
+    left: 99%;
+    top: -420px;
 }
 
 #toDash { 
-    left: 21%;
-    top: -400px;
+    left: 55%;
+    top: -160px
 }
+#logoutDash {
+    left: 55%;
+    top: -160px;
+}
+
+#logoutRoom {
+    left: 55%;
+    top: -160px
+}
+
+
 
 #textStyle {
     font-family: 'Fugaz One', cursive;
@@ -122,7 +123,7 @@
 
 /*CSS for Gameboard */
 
-#game-board {
+#gameWindow {
     margin-left: auto;
     margin-right: auto;
     border-radius: 25px;
