@@ -1,0 +1,24 @@
+
+<div class="container">
+    <div class="popUp">
+        <div class="input-field col m12">
+            <form id="signin" name="signin" method="post" action="signin">
+                <label for="username"></label>
+                <input class="text" name="username" type="text" placeholder="Username">
+                <label for="password"></label>
+                <input name="password" type="password" placeholder="Password">
+        </div>
+
+        <div class="button-container">
+            <button class="waves-effect waves-light btn black" id="button1" type="submit">LOGIN</button>
+            <a href="/signup" class="waves-effect waves-light btn grey darken-1" id="button2">REGISTER</a>
+        </div>
+        </form>
+    </div>
+
+    <script>
+        var taco = localStorage.getItem('userId');
+        console.log(taco);
+
+
+    </script>

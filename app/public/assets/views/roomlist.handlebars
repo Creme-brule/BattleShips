@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="popUp" id="roomPopUp">
+
+
+    <ul>
+      {{#each rooms}} {{> rooms/room-block}} {{else}}
+      <h4 id="dashboard">NO ROOMS TO JOIN</h4>
+      <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
+      {{/each}}
+    </ul>
+
+    <div class="logout">
+      <a href="/logout">
+        <button class="btn-floating btn-large waves-effect waves red darken-1" id="logoutRoom" title="Logout">
+          <i class="material-icons">exit_to_app</i>
+          Dashboard</button>
+      </a>
+    </div>
+
+    <div class="dashboard">
+      <a href="/dashboard">
+        <button class="btn-floating btn-large waves-effect waves green darken-1" id="toDash" title="Dashboard">
+          <i class="material-icons">home</i>
+          Log Out</button>
+      </a>
+    </div>
+
+
+  </div>
+
+</div>
+
+<script>
+  var createable = true;
+  $("#createRoom").on("click", function () {
+    if (createable) {
+      createable = false;
+      $.ajax({
+        url: "/api/new",
+        type: "POST",
+        data: {
+          player1Id: localStorage.getItem("userId")
+        }
+      }).then(function (data) {
+        location.href = "/map/" + data;
+      });
+    }
+  });
+
+</script>
+<script src="/js/roomlist.js" type="text/javascript"></script>

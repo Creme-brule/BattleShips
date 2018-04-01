@@ -1,0 +1,46 @@
+{
+  "name": "battleships",
+  "version": "1.0.0",
+  "description": "This project was made by Yonghee, Justin, and Lewis feature 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Creme-brule/BattleShips.git"
+  },
+  "author": "Creme Brulee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Creme-brule/BattleShips/issues"
+  },
+  "homepage": "https://github.com/Creme-brule/BattleShips#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "inquirer": "^5.2.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "npm": "^5.8.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.37.4"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+  },
+  "jest": {
+    "automock": false,
+    "verbose": true,
+    "collectCoverageFrom": [
+      "titleize.js"
+    ],
+    "collectCoverage": true
+  }
+}
