@@ -1,5 +1,4 @@
 #teamLogo {
-    margin-top: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -27,6 +26,8 @@
 
 
 .popUp {
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 25px;
     background: whitesmoke;
     padding: 20px;
@@ -34,7 +35,6 @@
     height: 400px;
     position: absolute;
     left: 38%;
-    top: 20%;
     box-shadow: 10px 10px 5px #888888;
     margin-top: 40px;
 }
@@ -77,6 +77,31 @@
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
     margin-top: 40px;
+}
+
+#logout {
+    left: 60%;
+    margin-top: 15px;
+    size: 10%;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+#logout2 {
+    left: 69%;
+    margin-top: 25px;
+    size: 10%;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+#logout3 {
+    left: 55%;
+    size: 10%;
+    top: -175px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+#home {
+    margin-top: 10px;
 }
 
 
@@ -171,6 +196,15 @@ li {
     color: white;
     height: 50px;
     width: 100px;
+    text-align: center;
+}
+
+#turn {
+    background: black;
+    border-radius: 5px;
+    color: white;
+    height: 50px;
+    width: 150px;
     text-align: center;
 }
 
