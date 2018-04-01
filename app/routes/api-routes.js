@@ -45,7 +45,8 @@ module.exports = function(app, passport) {
     console.log(move);
         db.Room.findOne({
             where: {
-                player_turn: req.body.playerid
+                player_turn: req.body.playerid,
+                gameover: false
             }
         }).then(function(data) {
             if (data.player1_id == data.player_turn) {
