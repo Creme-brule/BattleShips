@@ -19,16 +19,12 @@ module.exports = function(sequelize, DataTypes) {
             notEmpty: true
         },
  
-        nickname: {
+        username: {
             type: DataTypes.TEXT
         },
  
         about: {
             type: DataTypes.TEXT
-        },
-
-        username: { 
-            type:DataTypes.STRING,
         },
  
         password: {
