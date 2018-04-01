@@ -63,6 +63,7 @@ module.exports = function(app, passport) {
                         player1y: player1Cords[1],
                         player2x: player2Cords[0],
                         player2y: player2Cords[1],
+                        player_turn: data.player2_id,
                         turns: db.Sequelize.literal("turns + 1")
                     },{
                         where: {
@@ -109,6 +110,73 @@ module.exports = function(app, passport) {
                             db.Room.update({
                                 turns: db.Sequelize.literal("turns + 1"),
                                 player_turn: data.player2_id
+                            },{
+                                where: { 
+                                    id: data.id
+                                }
+                            });
+                        }
+                    });
+                }
+            } else if (data.player2_id == data.player_turn) {
+                if (move[0] == data.player1x && move[1] == data.player1y) {
+                    starting = [[0, 0], [0, 4], [4, 0], [4, 4]];
+                    var rando = Math.floor(Math.random() * starting.length);
+                    var player1Cords = starting[rando];
+                    starting.splice(rando, 1);
+                    var player2Cords = starting[Math.floor(Math.random() * starting.length)];
+                    db.Room.update({
+                        player1x: player1Cords[0],
+                        player1y: player1Cords[1],
+                        player2x: player2Cords[0],
+                        player2y: player2Cords[1],
+                        player_turn: data.player1_id,
+                        turns: db.Sequelize.literal("turns + 1")
+                    },{
+                        where: {
+                            id: data.id
+                        }
+                    });
+                } else {
+                    db.Room.update({
+                        player2x: move[0],
+                        player2y: move[1]
+                    },{
+                        where: {
+                            id: data.id
+                        }
+                    }).then(function(results) {
+                        if (attack[0] == data.player1x && attack[1] == data.player1y) {
+                            db.Room.update({
+                                gameover: true
+                            },{
+                                where: {
+                                    id: data.id
+                                }
+                            }).then(function() {
+                                db.user.update({
+                                    user_wins: db.Sequelize.literal("user_wins + 1"),
+                                    RoomId: null
+
+                                },{
+                                    where: {
+                                        id: data.player2_id
+                                    }
+                                }).then(function() {
+                                    db.user.update({
+                                        user_loss: db.Sequelize.literal("user_loss + 1"),
+                                        RoomId: null
+                                    },{
+                                        where: {
+                                            id: data.player1_id
+                                        }
+                                    });
+                                });
+                            });
+                        } else {
+                            db.Room.update({
+                                turns: db.Sequelize.literal("turns + 1"),
+                                player_turn: data.player1_id
                             },{
                                 where: { 
                                     id: data.id

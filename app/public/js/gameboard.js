@@ -1,4 +1,3 @@
-var directions = ["Left", "Up", "Stay", "Down", "Right"]
 var turn = 0;
 $(function () {
     doPoll();
@@ -8,6 +7,7 @@ $(function () {
             console.log(data);
             if (data == "Game Over") location.href = "/";
         }).then(function (data) {
+            var directions = ["Left", "Up", "Stay", "Down", "Right"];
             if (data.turns > turn) {
                 turn = data.turns;
                 moves = [`${data.playerx - 1},${data.playery}`,`${data.playerx},${data.playery - 1}`,`${data.playerx},${data.playery + 1}`,`${data.playerx + 1},${data.playery}`];
@@ -116,6 +116,10 @@ $(function () {
         var attack = $(".attack").data("coord");
         var move = $(".move").data("coord");
         console.log(move + "//" + attack);
+        if (attack == undefined || move == undefined){
+            console.log("You must select a move and an attack");
+            doPoll();
+        }
         $.ajax({
             url: "/api/turn", 
             type: "PUT",
