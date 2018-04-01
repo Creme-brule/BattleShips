@@ -1,4 +1,4 @@
-var turn = 0;
+var turn = -1;
 $(function () {
     doPoll();
     function doPoll(){
@@ -55,6 +55,7 @@ $(function () {
                             let $moveli = $("<li>");
                             $moveli.addClass("moveli");
                             $movebtn.addClass("move-btn");
+                            $movebtn.attr("title", coords);
                             $movebtn.data("coord", coords);
                             $moveli.append($movebtn);
                             $moveul.append($moveli);
@@ -65,6 +66,7 @@ $(function () {
                             $btn.addClass("board-btn");
                             $btn.data("coord", coords);
                             $btn.addClass("water");
+                            $btn.attr("title", coords);
                             $li.append($btn);
                             if (moves.includes(coords)) {
                                 let $movebtn = $("<button>");
@@ -73,6 +75,7 @@ $(function () {
                                 $btn.addClass("move-spot");                     
                                 $movebtn.addClass("move-btn");
                                 $movebtn.addClass(directions[count]);
+                                $movebtn.attr("title", coords);
                                 $moveli.addClass("moveli");
                                 $movebtn.data("coord", coords);
                                 $movebtn.data("dir", directions[count]);
@@ -90,6 +93,10 @@ $(function () {
                 }
                 $("#game-board").append($board);
                 if (data.player_id == data.player_turn) {
+                    if (data.waitFor2) {
+                        setTimeout(doPoll, 5000);
+                        return $("#game-board").append($("<button id='turn'>Waiting for Player 2!</button>")); 
+                    }
                     $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
                 }
                 else {
@@ -99,7 +106,7 @@ $(function () {
             } else {
                 setTimeout(doPoll, 5000);
             }
-        }).always(function() { setTimeout(doPool, 60000) });
+        }).always(function() { setTimeout(doPoll, 60000) });
     }
     $(document).on("click", ".board-btn", function (event) {
         console.log($(this).data("coord"));

@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Room = sequelize.define("Room", {
         turns: {
             type: DataTypes.INTEGER,
-            defaultValue: 1,
+            defaultValue: 0,
             allowNull: false
         },
         player_turn: DataTypes.INTEGER,
