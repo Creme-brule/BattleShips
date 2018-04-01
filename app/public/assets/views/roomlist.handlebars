@@ -1,15 +1,30 @@
-<div id="game-board"></div>
+<div class="container">
+  <div class="popUp" id="roomPopUp">
 
-<h1>Room List</h1>
 
 <ul>
   {{#each rooms}} {{> rooms/room-block}} {{else}}
-  <h3>NO ROOMS TO JOIN</h3>
+  <h4>NO ROOMS TO JOIN</h4>
   <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
   {{/each}}
 </ul>
 
-<a href="/dashboard">Back to Dashboard</a>
+  </div>
+  <div class="logout">
+    <a href="/logout">
+      <button class="btn-floating btn-large waves-effect waves red darken-1" id="toDash">
+        <i class="material-icons">exit_to_app</i>
+        Dashboard</button>
+    </a>
+  </div>
+  <div class="dashboard">
+    <a href="/dashboard">
+      <button class="btn-floating btn-large waves-effect waves green darken-1" id="logoutRoom">
+        <i class="material-icons">home</i>
+        Log Out</button>
+    </a>
+  </div>
+</div>
 
 <script>
   var createable = true;

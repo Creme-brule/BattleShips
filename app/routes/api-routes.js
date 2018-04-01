@@ -4,30 +4,38 @@ var op = db.Sequelize.Op;
 module.exports = function(app, passport) {
   app.get("/api/:userId", isLoggedIn, function(req, res) {
     var userId = req.params.userId;
-    db.Room.findOne({
-      where: {
-        gameover: false,
-        [op.or]: [{ player1_id: userId }, { player2_id: userId }]
-      }
-    }).then(function(dbRoom) {
-      if (!dbRoom) return res.send("Game Over");
-      var response = {
-        turns: dbRoom.turns,
-        height: dbRoom.height,
-        width: dbRoom.width,
-        player_turn: dbRoom.player_turn
-      };
-      if (userId == dbRoom.player1_id) {
-        response["player_id"] = dbRoom.player1_id;
-        response["playerx"] = dbRoom.player1x;
-        response["playery"] = dbRoom.player1y;
-      } else if (userId == dbRoom.player2_id) {
-        response["player_id"] = dbRoom.player2_id;
-        response["playerx"] = dbRoom.player2x;
-        response["playery"] = dbRoom.player2y;
-      }
-      res.json(response);
-    });
+      db.Room.findOne({
+        where: {
+          gameover: false,
+        [op.or]: [
+            { player1_id: userId },
+            { player2_id: userId }
+            ]
+        }
+      }).then(function(dbRoom) {
+          if(!dbRoom) return res.send("Game Over");
+          var response = {
+              turns: dbRoom.turns,
+              height: dbRoom.height,
+              width: dbRoom.width,
+              player_turn: dbRoom.player_turn,
+              waitFor2: false
+          }
+          if (dbRoom.turns == 0) {
+              response.waitFor2 = true;
+          }
+          if (userId == dbRoom.player1_id) {
+                response["player_id"] = dbRoom.player1_id;
+                response["playerx"] = dbRoom.player1x;
+                response["playery"] = dbRoom.player1y;
+          }
+          else if (userId == dbRoom.player2_id) {
+                response["player_id"] = dbRoom.player2_id;
+                response["playerx"] = dbRoom.player2x;
+                response["playery"] = dbRoom.player2y;
+          }
+        res.json(response);
+      });
   });
   //do a turn
   app.put("/api/turn", isLoggedIn, function(req, res) {
@@ -233,7 +241,7 @@ module.exports = function(app, passport) {
     var player2Cords = starting[Math.floor(Math.random() * starting.length)];
     var player1Id = req.body.player1Id;
     db.Room.create({
-      turns: 1,
+      turns: 0,
       height: 5,
       width: 5,
       gameover: false,
@@ -262,7 +270,8 @@ module.exports = function(app, passport) {
   app.put("/api/room", isLoggedIn, function(req, res) {
     db.Room.update(
       {
-        player2_id: req.body.joiner
+        player2_id: req.body.joiner,
+        turns: 1
       },
       {
         returning: true,
@@ -276,6 +285,7 @@ module.exports = function(app, passport) {
           id: req.body.roomid
         }
       }).then(function(results) {
+        console.log("JOIN RESULTS:"+ results);
         db.user
           .update(
             {
