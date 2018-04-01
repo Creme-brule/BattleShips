@@ -1,11 +1,12 @@
+var authController = require("../controllers/authcontrollers.js");
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/map/:Id", function(req, res) {
+  app.get("/map/:Id", isLoggedIn,function(req, res) {
     res.render("gameboard", {});
   });
 
-  app.get("/dashboard/rooms", function(req, res) {
+  app.get("/dashboard/rooms", isLoggedIn,function(req, res) {
     db.Room
       .findAll({
         where: {
@@ -16,4 +17,11 @@ module.exports = function(app) {
         res.render("roomlist", { rooms:data });
       });
   });
+
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next();
+
+    res.redirect("/signin");
+  }
+
 };
