@@ -9,17 +9,32 @@ var test = {
   playery: 3
 };
 module.exports = function(app, passport) {
-  app.get("/api/:mapId", function(req, res) {
-    var mapId = req.params.mapId;
-    if (mapId) {
+  app.get("/api/:userId", isLoggedIn, function(req, res) {
+    var userId = req.params.userId;
       db.Room.findOne({
         where: {
-          id: mapId
+          gameover: false,
+        [op.or]: [
+            { player1_id: userId },
+            { player2_id: userId }
+            ]
         }
       }).then(function(dbRoom) {
-        res.json(test);
+          var response = {
+              turns: dbRoom.turns,
+              height: dbRoom.height,
+              width: dbRoom.width,
+          }
+          if (userId == dbRoom.player1_id) {
+                response["playerx"] = dbRoom.player1x;
+                response["playery"] = dbRoom.player1y;
+          }
+          else if (userId == dbRoom.player2_id) {
+            response["playerx"] = dbRoom.player2x;
+            response["playery"] = dbRoom.player2y;
+          }
+        res.json(response);
       });
-    }
   });
   //create a new room
   app.post("/api/new", isLoggedIn, function(req, res) {
@@ -34,6 +49,7 @@ module.exports = function(app, passport) {
       height: 5,
       width: 5,
       gameover: false,
+      player_turn: player1Id,
       player1x: player1Cords[0],
       player1y: player1Cords[1],
       player2x: player2Cords[0],

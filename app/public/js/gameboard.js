@@ -4,7 +4,7 @@ $(function () {
     doPoll();
     function doPoll(){
         console.log("poll");
-        $.get("/api/1", function (data) {
+        $.get("/api/"+localStorage.getItem("userId"), function (data) {
             console.log(data);
         }).then(function (data) {
             if (data.turns > turn) {
@@ -12,20 +12,34 @@ $(function () {
                 moves = [`${data.playerx - 1},${data.playery}`,`${data.playerx},${data.playery - 1}`,`${data.playerx},${data.playery + 1}`,`${data.playerx + 1},${data.playery}`];
                 console.log("run");
                 $("#game-board").empty();
-                switch (data.playerx) {
+                console.log(data.playerx + ""+ data.playery)
+                if (data.playerx == data.width -1) {
+                    directions.splice(4,1);
+                };
+                if (data.playery == data.height -1) {
+                    directions.splice(3,1);
+                };
+                if (data.playery == 0) {
+                    directions.splice(1,1);
+                };
+                if (data.playerx == 0) {
+                    directions.splice(0,1);
+                };
+                console.log(directions);
+                /* switch (data.playerx) {
                     case 0:
-                        moves.splice(1, 1);
+                        directions.splice(0, 1);
                         break;
                     case data.width:
-                        moves.splice(3, 1);
+                        directions.splice(4, 1);
                 }
                 switch (data.playery) {
                     case 0:
-                        moves.splice(0, 1);
+                        directions.splice(1, 1);
                         break;
                     case data.width:
-                        moves.splice(4, 1);
-                }
+                        directions.splice(3, 1);
+                } */
                 var count = 0;
                 var $board = $("<div>");
                 var $move = $("<div>");
