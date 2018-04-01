@@ -5,6 +5,9 @@
     <div id="stats">
         <div id="mostWins">
             <h3>LEADERBOARD</h3>
+            <div id="champion"></div>
+            <div id="runner-up"></div>
+            <div id="second-runner"></div>
         </div>
     </div>
 
@@ -28,11 +31,16 @@
                     type:"GET",
                     url: "/inGame/"+localId
                 }).then(function(results){
-                    console.log("inGameTest");
                     if(results.id) {
-                    console.log(results.id);
                     location.href="/map/"+results.id;
                     }
+                });
+                console.log("wewt");
+                $.ajax({
+                    type:"GET",
+                    url: "/stats"
+                }).then(function(results){
+                    console.log(results);
                 });
                 var createable = true;
                 $("#createRoom").on("click", function () {
@@ -51,7 +59,6 @@
                     }
                 });
                 $("#roomList").on("click", function () {
-                    console.log("yayayay");
                     location.href = "/dashboard/rooms"
                 })
             });
