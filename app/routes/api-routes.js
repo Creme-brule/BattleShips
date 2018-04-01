@@ -63,13 +63,38 @@ module.exports = function(app, passport) {
         player2_id: req.body.joiner
       },
       {
+        returning: true,
         where: {
           id: req.body.roomid
         }
       }
     ).then(function(data) {
+      console.log("\n\n\n\njoining");
       console.log(data);
-      res.json(data);
+      db.Room.findOne({
+        where: {
+          id: req.body.roomid
+        }
+      }).then(function(results) {
+        console.log("JOIN RESULTS:"+results);
+        db.user
+          .update(
+            {
+              RoomId: results.id,
+              playerx: results.player2x,
+              playery: results.player2y
+            },
+            {
+              where: {
+                id: req.body.joiner
+              }
+            }
+          )
+          .then(function(response) {
+            console.log("RESPONSE:"+response);
+            res.json(results.id);
+          });
+      });
     });
   });
 

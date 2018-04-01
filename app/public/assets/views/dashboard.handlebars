@@ -24,8 +24,10 @@
                     url: "/inGame/"+localId
                 }).then(function(results){
                     console.log("inGameTest");
+                    if(results.id) {
                     console.log(results.id);
                     location.href="/map/"+results.id;
+                    }
                 });
                 $("#infoPasser").remove();
                 $("#createRoom").on("click", function () {
