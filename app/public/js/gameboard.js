@@ -93,10 +93,13 @@ $(function () {
                     $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
                 }
                 else {
-                    $("#game-board").append($("<button id='turn'>NOT YOUR TURN</button>"));                                        
+                    $("#game-board").append($("<button>It is not your turn</button>"));
+                    setTimeout(doPoll, 5000);
                 }
+            } else {
+                setTimeout(doPoll, 5000);
             }
-        }).always(function() { setTimeout(doPoll, 5000) });
+        }).always(function() { setTimeout(doPool, 60000) });
     }
     $(document).on("click", ".board-btn", function (event) {
         console.log($(this).data("coord"));
@@ -119,18 +122,18 @@ $(function () {
         if (attack == undefined || move == undefined){
             console.log("You must select a move and an attack");
             doPoll();
+        } else {
+            $.ajax({
+                url: "/api/turn", 
+                type: "PUT",
+                data: {
+                    attack: attack,
+                    move: move,
+                    playerid: localStorage.getItem("userId")
+                }
+            }).then(function(){
+                doPoll();
+            });
         }
-        $.ajax({
-            url: "/api/turn", 
-            type: "PUT",
-            data: {
-                attack: attack,
-                move: move,
-                playerid: localStorage.getItem("userId")
-            }
-        }).then(function(data) {
-            console.log("ajax put ran " + data);
-            doPoll();
-        });
     });
 });

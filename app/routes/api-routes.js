@@ -1,13 +1,6 @@
 var authController = require("../controllers/authcontrollers.js");
 var db = require("../models");
 var op = db.Sequelize.Op;
-var test = {
-  turns: 1,
-  height: 5,
-  width: 5,
-  playerx: 4,
-  playery: 3
-};
 module.exports = function(app, passport) {
   app.get("/api/:userId", isLoggedIn, function(req, res) {
     var userId = req.params.userId;
@@ -70,6 +63,7 @@ module.exports = function(app, passport) {
                             id: data.id
                         }
                     });
+                    res.end();
                 } else {
                     db.Room.update({
                         player1x: move[0],
@@ -104,6 +98,7 @@ module.exports = function(app, passport) {
                                             id: data.player2_id
                                         }
                                     });
+                                    res.end();
                                 });
                             });
                         } else {
@@ -115,6 +110,7 @@ module.exports = function(app, passport) {
                                     id: data.id
                                 }
                             });
+                            res.end();
                         }
                     });
                 }
@@ -137,6 +133,7 @@ module.exports = function(app, passport) {
                             id: data.id
                         }
                     });
+                    res.end();
                 } else {
                     db.Room.update({
                         player2x: move[0],
@@ -171,6 +168,7 @@ module.exports = function(app, passport) {
                                             id: data.player1_id
                                         }
                                     });
+                                    res.end();
                                 });
                             });
                         } else {
@@ -182,6 +180,7 @@ module.exports = function(app, passport) {
                                     id: data.id
                                 }
                             });
+                            res.end();
                         }
                     });
                 }
