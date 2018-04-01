@@ -2,14 +2,12 @@ var authController = require("../controllers/authcontrollers.js");
 var db = require("../models");
 var op = db.Sequelize.Op;
 var test = {
-    turns: 1,
-    height: 5,
-    width: 5,
-    playerx: 4,
-    playery: 3,
-    moves: ["3,3", "4,2", "4,4", "5,3"]
-    //[up, right, down, left]
-}
+  turns: 1,
+  height: 5,
+  width: 5,
+  playerx: 4,
+  playery: 3
+};
 module.exports = function(app, passport) {
   app.get("/api/:mapId", function(req, res) {
     var mapId = req.params.mapId;
@@ -41,9 +39,16 @@ module.exports = function(app, passport) {
       player2x: player2Cords[0],
       player2y: player2Cords[1],
       player1_id: player1Id
-    }).then(function(results) { 
+    }).then(function(results) {
       db.user
-        .update({ RoomId: results.id }, { where: { id: player1Id } })
+        .update(
+          {
+            RoomId: results.id,
+            playerx: player1Cords[0],
+            playery: player1Cords[1]
+          },
+          { where: { id: player1Id } }
+        )
         .then(function(result) {
           console.log("\n room created \n");
           res.json(results.id);
@@ -52,31 +57,59 @@ module.exports = function(app, passport) {
   });
   //join a room
   app.put("/api/room", isLoggedIn, function(req, res) {
-      console.log("\n\n\nblehbleh\n\n\n");
+    console.log("\n\n\nblehbleh\n\n\n");
     db.Room.update(
       {
-        player2_id:req.body.joiner
+        player2_id: req.body.joiner
       },
       {
+        returning: true,
         where: {
           id: req.body.roomid
         }
       }
-    ).then(function(data){
-        console.log(data);
-        res.json(data);
+    ).then(function(data) {
+      console.log("\n\n\n\njoining");
+      console.log(data);
+      db.Room.findOne({
+        where: {
+          id: req.body.roomid
+        }
+      }).then(function(results) {
+        console.log("JOIN RESULTS:"+results);
+        db.user
+          .update(
+            {
+              RoomId: results.id,
+              playerx: results.player2x,
+              playery: results.player2y
+            },
+            {
+              where: {
+                id: req.body.joiner
+              }
+            }
+          )
+          .then(function(response) {
+            console.log("RESPONSE:"+response);
+            res.json(results.id);
+          });
+      });
     });
   });
 
-  app.get("/inGame/:userId",isLoggedIn,function(req,res){
+  app.get("/inGame/:userId", isLoggedIn, function(req, res) {
     db.Room.findOne({
       where: {
-        gameover:false,
-        [op.or]:[{player1_id:req.params.userId},{player2_id:req.params.userId}]
+        gameover: false,
+        [op.or]: [
+          { player1_id: req.params.userId },
+          { player2_id: req.params.userId }
+        ]
       }
-    }).then(function(data){
+    }).then(function(data) {
       res.json(data);
-    })
+    });
   });
 
   function isLoggedIn(req, res, next) {
