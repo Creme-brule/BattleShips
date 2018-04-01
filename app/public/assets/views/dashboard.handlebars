@@ -40,10 +40,22 @@
                     type:"GET",
                     url: "/inGame/"+localId
                 }).then(function(results){
-                    console.log("inGameTest");
                     if(results.id) {
-                    console.log(results.id);
                     location.href="/map/"+results.id;
+                    }
+                });
+                console.log("wewt");
+                $.ajax({
+                    type:"GET",
+                    url: "/stats"
+                }).then(function(results){
+                    console.log(results);
+                    var leaders = results[0];
+                    for(var i = 0; i<leaders.length;i++)
+                    {
+                        var newDiv = $("<div>");
+                        newDiv.text(`${leaders[i].username.toUpperCase()} WITH ${leaders[i].user_wins} WINS!`)
+                        $("#textStyle").append(newDiv);
                     }
                 });
                 var createable = true;
@@ -63,7 +75,6 @@
                     }
                 });
                 $("#roomList").on("click", function () {
-                    console.log("yayayay");
                     location.href = "/dashboard/rooms"
                 })
             });
