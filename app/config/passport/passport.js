@@ -34,7 +34,7 @@ module.exports = function(passport, user) {
         };
         User.findOne({
           where: {
-            nickname: hotdog
+            username: hotdog
           }
         }).then(function(user) {
           if (user) {
@@ -45,7 +45,7 @@ module.exports = function(passport, user) {
             var userPassword = generateHash(password);
 
             var data = {
-              nickname: hotdog,
+              username: hotdog,
 
               password: userPassword,
 
@@ -92,7 +92,7 @@ module.exports = function(passport, user) {
 
         User.findOne({
           where: {
-            nickname: hotdog
+            username: hotdog
           }
         })
           .then(function(user) {

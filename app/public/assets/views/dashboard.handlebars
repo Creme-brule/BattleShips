@@ -2,7 +2,14 @@
 
     <h2 id="dashboard">{{userName}}'s Dashboard</h2>
     <div id="infoPasser" style="display:none">{{userId}}</div>
-
+    <div id="stats">
+        <div id="mostWins">
+            <h3>LEADERBOARD</h3>
+        </div>
+        <div id="mostGames">
+            <h3>MOST GAMES</h3>
+        </div>
+    </div>
 
     <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
     <button class="waves-effect waves-light btn black" id="roomList" type="submit">JOIN ROOMS</butt>
@@ -30,7 +37,10 @@
                     }
                 });
                 $("#infoPasser").remove();
+                var createable = true;
                 $("#createRoom").on("click", function () {
+                    if(createable){
+                        createable=false;
                     $.ajax({
                         url: "/api/new",
                         type: "POST",
@@ -41,6 +51,7 @@
                         console.log(data);
                         location.href = "/map/" + data;
                     });
+                    }
                 });
                 $("#roomList").on("click", function () {
                     console.log("yayayay");
