@@ -37,7 +37,7 @@
     left: 38%;
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .input-field input[type=text]:focus, .input-field input[type=password]:focus  {
@@ -64,7 +64,7 @@
     left: 30%;
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 #roomPopUp {
@@ -77,7 +77,7 @@
     left: 30%;
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 
@@ -87,12 +87,12 @@
     border-radius: 25px;
     background: whitesmoke;
     padding: 20px;
-    height: 400px;
+    height: 420px;
     position: absolute;
     left: 38%;
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 /* CSS for Gameboard Handlebar */
@@ -100,6 +100,11 @@ ul {
     list-style: none;
     display: inline-block;
     padding: 0;
+}
+
+li {
+    height: 50px;
+    width: 50px;
 }
 
 .moveli {
@@ -155,4 +160,12 @@ ul {
     background-size: cover;
 }
 
+#submit {
+    background: black;
+    border-radius: 5px;
+    color: white;
+    height: 50px;
+    width: 100px;
+    text-align: center;
+}
 
