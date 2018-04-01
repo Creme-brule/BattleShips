@@ -6,6 +6,7 @@ $(function () {
         console.log("poll");
         $.get("/api/"+localStorage.getItem("userId"), function (data) {
             console.log(data);
+            if (data == "Game Over") location.href = "/";
         }).then(function (data) {
             if (data.turns > turn) {
                 turn = data.turns;
@@ -88,7 +89,12 @@ $(function () {
                     $board.append($move);
                 }
                 $("#game-board").append($board);
-                $("#game-board").append($("<button id='submit'>Submit Move</button>"))
+                if (data.player_id == data.player_turn) {
+                    $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
+                }
+                else {
+                    $("#game-board").append($("<button>It is not your turn</button>"));                                        
+                }
             }
         }).always(function() { setTimeout(doPoll, 5000) });
     }
@@ -107,7 +113,20 @@ $(function () {
         event.preventDefault();
     });
     $(document).on("click", "#submit", function (event) {
-        console.log($(".attack").data("coord"));
-        console.log($(".move").data("coord"));
+        var attack = $(".attack").data("coord");
+        var move = $(".move").data("coord");
+        console.log(move + "//" + attack);
+        $.ajax({
+            url: "/api/turn", 
+            type: "PUT",
+            data: {
+                attack: attack,
+                move: move,
+                playerid: localStorage.getItem("userId")
+            }
+        }).then(function(data) {
+            console.log("ajax put ran " + data);
+            doPoll();
+        });
     });
 });
