@@ -245,7 +245,7 @@ module.exports = function(app, passport) {
           id: req.body.roomid
         }
       }).then(function(results) {
-        console.log("JOIN RESULTS:"+results);
+        console.log("JOIN RESULTS:"+ results);
         db.user
           .update(
             {

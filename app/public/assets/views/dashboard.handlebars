@@ -1,18 +1,30 @@
 <div class="container">
+    <div class="popUp" id="dashPopUp">
 
-    <h2 id="dashboard">{{userName}}'s Dashboard</h2>
+    <h3 id="dashboard">{{userName}}'s Dashboard</h3>
     <div id="infoPasser" style="display:none">{{userId}}</div>
-    <div id="stats">
-        <div id="mostWins">
-            <h3>LEADERBOARD</h3>
+   
+        <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
+        <button class="waves-effect waves-light btn black" id="roomList" type="submit">JOIN ROOMS</button>
+        
+        <div class="button">
+            <a href="/logout">
+                <button class="btn-floating btn-large waves-effect waves- red darken-1" id="logoutDash">
+                    <i class="material-icons white-text">exit_to_app</i>
+                    Log Out</button>
+            </a>
         </div>
     </div>
 
-    <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
-    <button class="waves-effect waves-light btn black" id="roomList" type="submit">JOIN ROOMS</butt>
+    <div class="popUp" id="statPopUp">
 
-        {{!--
-        <button id="movement">Movement Test</button> --}}
+        <div id="stats">
+            <div id="mostWins">
+                <h4>LEADERBOARD</h4>
+        </div>
+    </div>
+    </div>
+</div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
@@ -56,4 +68,5 @@
                 })
             });
 
-        </script>
+
+</script>
