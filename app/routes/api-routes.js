@@ -272,6 +272,17 @@ module.exports = function(app, passport) {
       });
     });
   });
+  //get leaderboard info
+  app.get("/stats",isLoggedIn, function(req,res){
+    db.sequelize.query(`
+    SELECT *
+    FROM users
+    ORDER BY user_wins DESC
+    LIMIT 3
+    `).then(function(data){
+      res.json(data);
+    });
+  })
 
   app.get("/inGame/:userId", isLoggedIn, function(req, res) {
     db.Room.findOne({

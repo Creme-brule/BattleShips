@@ -46,6 +46,17 @@
                     location.href="/map/"+results.id;
                     }
                 });
+                $.ajax({
+                    type:"GET",
+                    url:"/stats",
+                }).then(function(results){
+                    var leaders = results[0];
+                    for(var i = 0; i <leaders.length; i++){
+                        var newDiv = $("<div>");
+                        newDiv.text(`${leaders[i].username.toUpperCase()} WITH ${leaders[i].user_wins} WINS!`);
+                        $("#textStyle").append(newDiv);
+                    }
+                })
                 var createable = true;
                 $("#createRoom").on("click", function () {
                     if(createable){
