@@ -1,49 +1,51 @@
 <div class="container">
-    <div class="popUp" id="dashPopUp">
-        <h3 id="dashboard">{{userName}}'s Dashboard</h3>
-        <div id="infoPasser" style="display:none">{{userId}}</div>
+     <div class="popUp" id="dashPopUp">
+
+    <h3 id="dashboard">{{userName}}'s Dashboard</h3>
+    <div id="infoPasser" style="display:none">{{userId}}</div>
 
 
-        <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
-        <button class="waves-effect waves-light btn black" id="roomList" type="submit">JOIN ROOMS</butt>
+    <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
+    <button class="waves-effect waves-light btn black" id="roomList" type="submit">JOIN ROOMS</butt>
 
-            {{!--
-            <button id="movement">Movement Test</button> --}}
+        {{!--
+        <button id="movement">Movement Test</button> --}}
 
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                crossorigin="anonymous"></script>
-            <script>
-                $(document).ready(function () {
-                    //TODO: FIND OUT WHY INSTEAD OF RES.RENDER YOU MUST DO REDIRECT FROM AJAX
-                    var passed = $("#infoPasser").text();
-                    localStorage.setItem("userId", passed);
-                    var localId = localStorage.getItem("userId");
-                    console.log("\n\nlocalstorage" + localId);
-                    $.ajax({
-                        type: "GET",
-                        url: "/inGame/" + localId
-                    }).then(function (results) {
-                        console.log("inGameTest");
-                        console.log(results.id);
-                        location.href = "/map/" + results.id;
-                    });
-                    $("#infoPasser").remove();
-                    $("#createRoom").on("click", function () {
-                        $.ajax({
-                            url: "/api/new",
-                            type: "POST",
-                            data: {
-                                player1Id: localStorage.getItem("userId")
-                            }
-                        }).then(function (data) {
-                            console.log(data);
-                            location.href = "/map/" + data;
-                        });
-                    });
-                    $("#roomList").on("click", function () {
-                        console.log("yayayay");
-                        location.href = "/dashboard/rooms"
-                    })
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+                //TODO: FIND OUT WHY INSTEAD OF RES.RENDER YOU MUST DO REDIRECT FROM AJAX
+                var passed = $("#infoPasser").text();
+                localStorage.setItem("userId", passed);
+                var localId = localStorage.getItem("userId");
+                console.log("\n\nlocalstorage"+localId);
+                $.ajax({
+                    type:"GET",
+                    url: "/inGame/"+localId
+                }).then(function(results){
+                    console.log("inGameTest");
+                    if(results.id) {
+                    console.log(results.id);
+                    location.href="/map/"+results.id;
+                    }
                 });
-
-            </script>
+                $("#infoPasser").remove();
+                $("#createRoom").on("click", function () {
+                    $.ajax({
+                        url: "/api/new",
+                        type: "POST",
+                        data: {
+                            player1Id: localStorage.getItem("userId")
+                        }
+                    }).then(function (data) {
+                        console.log(data);
+                        location.href = "/map/" + data;
+                    });
+                });
+                $("#roomList").on("click", function () {
+                    console.log("yayayay");
+                    location.href = "/dashboard/rooms"
+                })
+            });
+        </script>

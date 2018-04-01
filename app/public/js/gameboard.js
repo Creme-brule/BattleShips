@@ -1,4 +1,4 @@
-var moves = ["Left", "Up", "Stay", "Down", "Right"]
+var directions = ["Left", "Up", "Stay", "Down", "Right"]
 var turn = 0;
 $(function () {
     doPoll();
@@ -9,6 +9,7 @@ $(function () {
         }).then(function (data) {
             if (data.turns > turn) {
                 turn = data.turns;
+                moves = [`${data.playerx - 1},${data.playery}`,`${data.playerx},${data.playery - 1}`,`${data.playerx},${data.playery + 1}`,`${data.playerx + 1},${data.playery}`];
                 console.log("run");
                 $("#game-board").empty();
                 switch (data.playerx) {
@@ -45,7 +46,7 @@ $(function () {
                             $movebtn.data("coord", coords);
                             $moveli.append($movebtn);
                             $moveul.append($moveli);
-                            $movebtn.text(moves[count]);
+                            $movebtn.text(directions[count]);
                             count++;
                         }
                         else {
@@ -53,19 +54,19 @@ $(function () {
                             $btn.data("coord", coords);
                             $btn.addClass("water");
                             $li.append($btn);
-                            if (data.moves.includes(coords)) {
+                            if (moves.includes(coords)) {
                                 let $movebtn = $("<button>");
                                 let $moveli = $("<li>");
-                                $btn.attr("id", moves[count]);   
+                                $btn.attr("id", directions[count]);   
                                 $btn.addClass("move-spot");                     
                                 $movebtn.addClass("move-btn");
-                                $movebtn.addClass(moves[count]);
+                                $movebtn.addClass(directions[count]);
                                 $moveli.addClass("moveli");
                                 $movebtn.data("coord", coords);
-                                $movebtn.data("dir", moves[count]);
+                                $movebtn.data("dir", directions[count]);
                                 $moveli.append($movebtn);
                                 $moveul.append($moveli);
-                                $movebtn.text(moves[count]);
+                                $movebtn.text(directions[count]);
                                 count++;
                             }
                         }
