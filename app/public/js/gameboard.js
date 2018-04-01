@@ -12,7 +12,6 @@ $(function () {
                 moves = [`${data.playerx - 1},${data.playery}`,`${data.playerx},${data.playery - 1}`,`${data.playerx},${data.playery + 1}`,`${data.playerx + 1},${data.playery}`];
                 console.log("run");
                 $("#game-board").empty();
-                console.log(data.playerx + ""+ data.playery)
                 if (data.playerx == data.width -1) {
                     directions.splice(4,1);
                 };
@@ -25,7 +24,6 @@ $(function () {
                 if (data.playerx == 0) {
                     directions.splice(0,1);
                 };
-                console.log(directions);
                 /* switch (data.playerx) {
                     case 0:
                         directions.splice(0, 1);
@@ -44,12 +42,11 @@ $(function () {
                 var $board = $("<div>");
                 var $move = $("<div>");
                 var $moveul = $("<ul>");
-                for (var x = 0; x < data.height; x++) {
+                for (var x = 0; x < data.width; x++) {
                     var $ul = $("<ul>");
-                    for (var y = 0; y < data.width; y++) {
+                    for (var y = 0; y < data.height; y++) {
                         let coords = `${x},${y}`;
                         let $li = $("<li>");
-                        $li.addClass("board");
                         let $btn = $("<button>");
                         if (x === parseInt(data.playerx) && y === parseInt(data.playery)) {
                             $li.append($("<div id='ship'><div>"));

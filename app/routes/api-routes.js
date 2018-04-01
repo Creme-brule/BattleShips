@@ -24,6 +24,7 @@ module.exports = function(app, passport) {
               turns: dbRoom.turns,
               height: dbRoom.height,
               width: dbRoom.width,
+              player_turn: dbRoom.player_turn
           }
           if (userId == dbRoom.player1_id) {
                 response["playerx"] = dbRoom.player1x;
