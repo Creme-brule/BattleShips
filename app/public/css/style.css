@@ -33,8 +33,6 @@
     padding: 20px;
     width: 300px;
     height: 400px;
-    position: absolute;
-    left: 38%;
     box-shadow: 10px 10px 5px #888888;
     margin-top: 40px;
 }
@@ -54,49 +52,46 @@
 }    
 
 #dashPopUp {
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 25px;
     background: whitesmoke;
     padding: 20px;
     width: 500px;
     height: 200px;
-    position: absolute;
-    left: 30%;
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
     margin-top: 40px;
 }
 
 #roomPopUp {
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 25px;
     background: whitesmoke;
     padding: 20px;
     width: 500px;
     height: 320px;
-    position: absolute;
-    left: 30%;
     top: 20%;
     box-shadow: 10px 10px 5px #888888;
     margin-top: 40px;
 }
 
-#logout {
+#logoutGame {
     left: 60%;
-    margin-top: 15px;
-    size: 10%;
+    bottom: -20px;
     box-shadow: 5px 5px 5px #888888;
 }
 
-#logout2 {
-    left: 69%;
-    margin-top: 25px;
-    size: 10%;
-    box-shadow: 5px 5px 5px #888888;
-}
-
-#logout3 {
+#logoutDash {
     left: 55%;
-    size: 10%;
-    top: -175px;
+    top: -166px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+#logoutRoom {
+    left: 21%;
+    top: -342px; 
     box-shadow: 5px 5px 5px #888888;
 }
 
@@ -108,6 +103,8 @@
 /*CSS for Gameboard */
 
 #game-board {
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 25px;
     background: whitesmoke;
     padding: 20px;
