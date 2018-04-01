@@ -6,9 +6,6 @@
         <div id="mostWins">
             <h3>LEADERBOARD</h3>
         </div>
-        <div id="mostGames">
-            <h3>MOST GAMES</h3>
-        </div>
     </div>
 
     <button class="waves-effect waves-light btn black" id="createRoom" type="submit">CREATE ROOM</button>
@@ -23,6 +20,7 @@
             $(document).ready(function () {
                 //TODO: FIND OUT WHY INSTEAD OF RES.RENDER YOU MUST DO REDIRECT FROM AJAX
                 var passed = $("#infoPasser").text();
+                $("#infoPasser").remove();
                 localStorage.setItem("userId", passed);
                 var localId = localStorage.getItem("userId");
                 console.log("\n\nlocalstorage"+localId);
@@ -36,7 +34,6 @@
                     location.href="/map/"+results.id;
                     }
                 });
-                $("#infoPasser").remove();
                 var createable = true;
                 $("#createRoom").on("click", function () {
                     if(createable){
