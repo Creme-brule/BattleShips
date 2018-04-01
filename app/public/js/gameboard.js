@@ -93,7 +93,7 @@ $(function () {
                     $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
                 }
                 else {
-                    $("#game-board").append($("<button id='turn'>It is not your turn</button>"));                                        
+                    $("#game-board").append($("<button id='turn'>NOT YOUR TURN</button>"));                                        
                 }
             }
         }).always(function() { setTimeout(doPoll, 5000) });
