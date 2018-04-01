@@ -61,6 +61,12 @@ ul {
     list-style: none;
     display: inline-block;
     padding: 0;
+    vertical-align: top;
+}
+
+li {
+    height: 50px;
+    width: 50px;
 }
 
 .moveli {

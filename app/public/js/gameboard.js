@@ -1,41 +1,53 @@
-var directions = ["Left", "Up", "Stay", "Down", "Right"]
 var turn = 0;
 $(function () {
     doPoll();
     function doPoll(){
         console.log("poll");
-        $.get("/api/1", function (data) {
+        $.get("/api/"+localStorage.getItem("userId"), function (data) {
             console.log(data);
+            if (data == "Game Over") location.href = "/";
         }).then(function (data) {
+            var directions = ["Left", "Up", "Stay", "Down", "Right"];
             if (data.turns > turn) {
                 turn = data.turns;
                 moves = [`${data.playerx - 1},${data.playery}`,`${data.playerx},${data.playery - 1}`,`${data.playerx},${data.playery + 1}`,`${data.playerx + 1},${data.playery}`];
                 console.log("run");
                 $("#game-board").empty();
-                switch (data.playerx) {
+                if (data.playerx == data.width -1) {
+                    directions.splice(4,1);
+                };
+                if (data.playery == data.height -1) {
+                    directions.splice(3,1);
+                };
+                if (data.playery == 0) {
+                    directions.splice(1,1);
+                };
+                if (data.playerx == 0) {
+                    directions.splice(0,1);
+                };
+                /* switch (data.playerx) {
                     case 0:
-                        moves.splice(1, 1);
+                        directions.splice(0, 1);
                         break;
                     case data.width:
-                        moves.splice(3, 1);
+                        directions.splice(4, 1);
                 }
                 switch (data.playery) {
                     case 0:
-                        moves.splice(0, 1);
+                        directions.splice(1, 1);
                         break;
                     case data.width:
-                        moves.splice(4, 1);
-                }
+                        directions.splice(3, 1);
+                } */
                 var count = 0;
                 var $board = $("<div>");
                 var $move = $("<div>");
                 var $moveul = $("<ul>");
-                for (var x = 0; x < data.height; x++) {
+                for (var x = 0; x < data.width; x++) {
                     var $ul = $("<ul>");
-                    for (var y = 0; y < data.width; y++) {
+                    for (var y = 0; y < data.height; y++) {
                         let coords = `${x},${y}`;
                         let $li = $("<li>");
-                        $li.addClass("board");
                         let $btn = $("<button>");
                         if (x === parseInt(data.playerx) && y === parseInt(data.playery)) {
                             $li.append($("<div id='ship'><div>"));
@@ -77,7 +89,12 @@ $(function () {
                     $board.append($move);
                 }
                 $("#game-board").append($board);
-                $("#game-board").append($("<button id='submit'>Submit Move</button>"))
+                if (data.player_id == data.player_turn) {
+                    $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
+                }
+                else {
+                    $("#game-board").append($("<button>It is not your turn</button>"));                                        
+                }
             }
         }).always(function() { setTimeout(doPoll, 5000) });
     }
@@ -96,7 +113,24 @@ $(function () {
         event.preventDefault();
     });
     $(document).on("click", "#submit", function (event) {
-        console.log($(".attack").data("coord"));
-        console.log($(".move").data("coord"));
+        var attack = $(".attack").data("coord");
+        var move = $(".move").data("coord");
+        console.log(move + "//" + attack);
+        if (attack == undefined || move == undefined){
+            console.log("You must select a move and an attack");
+            doPoll();
+        }
+        $.ajax({
+            url: "/api/turn", 
+            type: "PUT",
+            data: {
+                attack: attack,
+                move: move,
+                playerid: localStorage.getItem("userId")
+            }
+        }).then(function(data) {
+            console.log("ajax put ran " + data);
+            doPoll();
+        });
     });
 });

@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: 1,
             allowNull: false
         },
+        player_turn: DataTypes.INTEGER,
         height: DataTypes.INTEGER,
         width: DataTypes.INTEGER,
         gameover: {
