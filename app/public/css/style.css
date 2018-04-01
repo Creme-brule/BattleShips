@@ -22,6 +22,7 @@
 
 #button1, #button2, #button3, #room-join, #createRoom, #roomList {
     border-radius: 5px;
+    font-family: 'Fugaz One', cursive;
 }
 
 .popUp {
@@ -96,19 +97,28 @@
 
 #logoutDash {
     left: 55%;
-    top: -166px;
+    top: -150px;
 }
 
 #logoutRoom {
     left: 21%;
-    top: -400px; 
+    top: -287px
 }
 
-#toDash {
+#toDash { 
     left: 21%;
-    top: -287px; 
+    top: -400px;
 }
 
+#textStyle {
+    font-family: 'Fugaz One', cursive;
+
+}
+
+#dashboard {
+    font-family: 'Fugaz One', cursive;
+
+}
 
 /*CSS for Gameboard */
 
@@ -176,6 +186,9 @@ li {
     height: 50px;
     width: 50px;
     text-align: center;
+    font-family: 'Fugaz One', cursive;
+    font-size: 12px;
+
 }
 
 .board-btn {
@@ -204,6 +217,8 @@ li {
     height: 50px;
     width: 100px;
     text-align: center;
+    font-family: 'Fugaz One', cursive;
+
 }
 
 #turn {
@@ -213,5 +228,7 @@ li {
     height: 50px;
     width: 150px;
     text-align: center;
+    font-family: 'Fugaz One', cursive;
+
 }
 

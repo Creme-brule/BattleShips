@@ -7,7 +7,7 @@ $(function () {
             console.log(data);
             if (data == "Game Over") location.href = "/";
         }).then(function (data) {
-            var directions = ["Left", "Up", "Stay", "Down", "Right"];
+            var directions = ["LEFT", "UP", "STAY", "DOWN", "RIGHT"];
             if (data.turns > turn) {
                 turn = data.turns;
                 moves = [`${data.playerx - 1},${data.playery}`,`${data.playerx},${data.playery - 1}`,`${data.playerx},${data.playery + 1}`,`${data.playerx + 1},${data.playery}`];
@@ -95,7 +95,7 @@ $(function () {
                 if (data.player_id == data.player_turn) {
                     if (data.waitFor2) {
                         setTimeout(doPoll, 5000);
-                        return $("#game-board").append($("<button id='turn'>Waiting for Player 2!</button>")); 
+                        return $("#game-board").append($("<button id='turn'>WAITING FOR PLAYER 2!</button>")); 
                     }
                     $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
                 }
