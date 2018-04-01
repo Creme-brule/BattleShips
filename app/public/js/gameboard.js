@@ -99,7 +99,7 @@ $(function () {
             } else {
                 setTimeout(doPoll, 5000);
             }
-        });
+        }).always(function() { setTimeout(doPool, 60000) });
     }
     $(document).on("click", ".board-btn", function (event) {
         console.log($(this).data("coord"));
