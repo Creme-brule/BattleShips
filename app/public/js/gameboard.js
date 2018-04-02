@@ -1,5 +1,8 @@
 var turn = -1;
+var load = true;
 $(function () {
+    var path = window.location.pathname.split("/").pop();
+    $("#RoomInfo").append(`<h4 id="dashboard">ROOM ${path}</h4>`);
     doPoll();
     function doPoll(){
         console.log("poll");
@@ -27,20 +30,6 @@ $(function () {
                 if (data.playerx == 0) {
                     directions.splice(0,1);
                 };
-                /* switch (data.playerx) {
-                    case 0:
-                        directions.splice(0, 1);
-                        break;
-                    case data.width:
-                        directions.splice(4, 1);
-                }
-                switch (data.playery) {
-                    case 0:
-                        directions.splice(1, 1);
-                        break;
-                    case data.width:
-                        directions.splice(3, 1);
-                } */
                 var count = 0;
                 var $board = $("<div>");
                 var $move = $("<div>");
@@ -114,7 +103,17 @@ $(function () {
             } else {
                 setTimeout(doPoll, 5000);
             }
-        }).always(function() { setTimeout(doPoll, 60000) });
+        }).always(function() { 
+            if (load) {
+                $.get(`/enemy/${path}/${localStorage.getItem("userId")}`, function (data) {
+                    if (data){
+                        $("#RoomInfo").append(`<h4 id="textStyle">OPPONENT: ${data}</h4>`);
+                        load = false;
+                    }
+                });
+            }
+            setTimeout(doPoll, 60000) 
+        });
     }
     $(document).on("click", ".board-btn", function (event) {
         console.log($(this).data("coord"));

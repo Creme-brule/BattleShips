@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   app.get("/lose", isLoggedIn, function(req, res) {
     res.render("lose", {});
-  })
+  });
 
   app.get("/dashboard/rooms", isLoggedIn,function(req, res) {
     db.Room
