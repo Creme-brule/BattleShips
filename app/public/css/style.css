@@ -90,26 +90,39 @@
     margin-top: 40px;
 }
 
+#losePopUp, #winPopUp {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    background: whitesmoke;
+    padding: 20px;
+    width: 500px;
+    height: 120px;
+    top: 20%;
+    box-shadow: 10px 10px 5px #888888;
+    margin-top: 40px;
+}
+
+
 #logoutGame {
     left: 99%;
     top: -420px;
 }
 
-#toDash { 
+#toDash, #logoutRoom { 
     left: 55%;
     top: -160px
+}
+
+
+#logoutRoom2, #toDash2 {
+    left: 55%;
+    top: -120px
 }
 #logoutDash {
     left: 55%;
     top: -160px;
 }
-
-#logoutRoom {
-    left: 55%;
-    top: -160px
-}
-
-
 
 #textStyle {
     font-family: 'Fugaz One', cursive;
@@ -162,6 +175,18 @@ li {
 .water {
     background-image: url("../images/water.gif");
     background-repeat: repeat;
+    background-position: center;
+}
+
+.attack-close {
+    background-image: url("../images/firex.gif"), url("../images/water.gif");
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+}
+
+.enemy-attack {
+    background-image: url("../images/splash.gif"), url("../images/water.gif");
+    background-repeat: no-repeat, repeat;
     background-position: center;
 }
 

@@ -28,11 +28,21 @@ module.exports = function(app, passport) {
                 response["player_id"] = dbRoom.player1_id;
                 response["playerx"] = dbRoom.player1x;
                 response["playery"] = dbRoom.player1y;
+                response["player_attackx"] = dbRoom.player1_attackx;
+                response["player_attacky"] = dbRoom.player1_attacky;
+                response["player_attack_close"] = dbRoom.player1_attack_close;
+                response["enemy_attackx"] = dbRoom.player2_attackx;
+                response["enemy_attacky"] = dbRoom.player2_attacky;
           }
           else if (userId == dbRoom.player2_id) {
                 response["player_id"] = dbRoom.player2_id;
                 response["playerx"] = dbRoom.player2x;
                 response["playery"] = dbRoom.player2y;
+                response["player_attackx"] = dbRoom.player2_attackx;
+                response["player_attacky"] = dbRoom.player2_attacky;
+                response["player_attack_close"] = dbRoom.player2_attack_close;
+                response["enemy_attackx"] = dbRoom.player1_attackx;
+                response["enemy_attacky"] = dbRoom.player1_attacky;
           }
         res.json(response);
       });
@@ -40,9 +50,7 @@ module.exports = function(app, passport) {
 
   app.put("/api/turn", isLoggedIn, function(req, res) {
     var attack = req.body.attack.split(",");
-    console.log(attack);
     var move = req.body.move.split(",");
-    console.log(move);
         db.Room.findOne({
             where: {
                 player_turn: req.body.playerid,
@@ -78,7 +86,7 @@ module.exports = function(app, passport) {
                             id: data.id
                         }
                     }).then(function(results) {
-                        if (attack[0] == data.player2x && attack[1] == data.player2y) {
+                        if (data.turns > 2 && attack[0] == data.player2x && attack[1] == data.player2y) {
                             db.Room.update({
                                 gameover: true
                             },{
@@ -103,13 +111,29 @@ module.exports = function(app, passport) {
                                             id: data.player2_id
                                         }
                                     });
-                                    res.end();
+                                    res.send("Win");
                                 });
                             });
-                        } else {
+                        } else if (data.turns > 2 && (attack[0] == data.player2x || attack[1] == data.player2y)){
                             db.Room.update({
                                 turns: db.Sequelize.literal("turns + 1"),
-                                player_turn: data.player2_id
+                                player_turn: data.player2_id,
+                                player1_attackx: attack[0],
+                                player1_attacky: attack[1],
+                                player1_attack_close: true
+                            },{
+                                where: {
+                                    id: data.id
+                                }
+                            });
+                            res.end();
+                        }else {
+                            db.Room.update({
+                                turns: db.Sequelize.literal("turns + 1"),
+                                player_turn: data.player2_id,
+                                player1_attackx: attack[0],
+                                player1_attacky: attack[1],
+                                player1_attack_close: false
                             },{
                                 where: { 
                                     id: data.id
@@ -139,7 +163,7 @@ module.exports = function(app, passport) {
                         }
                     });
                     res.end();
-                } else {
+                }else {
                     db.Room.update({
                         player2x: move[0],
                         player2y: move[1]
@@ -148,7 +172,7 @@ module.exports = function(app, passport) {
                             id: data.id
                         }
                     }).then(function(results) {
-                        if (attack[0] == data.player1x && attack[1] == data.player1y) {
+                        if (data.turns > 2 && attack[0] == data.player1x && attack[1] == data.player1y) {
                             db.Room.update({
                                 gameover: true
                             },{
@@ -173,13 +197,29 @@ module.exports = function(app, passport) {
                                             id: data.player1_id
                                         }
                                     });
-                                    res.end();
+                                    res.send("Win");
                                 });
                             });
+                        } else if (data.turns > 2 && (attack[0] == data.player1x || attack[1] == data.player1y)){
+                            db.Room.update({
+                                turns: db.Sequelize.literal("turns + 1"),
+                                player_turn: data.player1_id,
+                                player2_attackx: attack[0],
+                                player2_attacky: attack[1],
+                                player2_attack_close: true
+                            },{
+                                where: {
+                                    id: data.id
+                                }
+                            });
+                            res.end();
                         } else {
                             db.Room.update({
                                 turns: db.Sequelize.literal("turns + 1"),
-                                player_turn: data.player1_id
+                                player_turn: data.player1_id,
+                                player2_attackx: attack[0],
+                                player2_attacky: attack[1],
+                                player2_attack_close: false
                             },{
                                 where: { 
                                     id: data.id
