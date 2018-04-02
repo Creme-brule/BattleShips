@@ -48,6 +48,25 @@ module.exports = function(app, passport) {
       });
   });
 
+  app.get("/enemy/:RoomId/:UserId", isLoggedIn, function(req, res) {
+      var room = req.params.RoomId;
+      var user = req.params.UserId;
+      db.user.findOne({
+          where: {
+              RoomId: room,
+              id: {
+                  [op.ne]: user
+              }
+          }
+      }).then(function(enemy) {
+          if (!enemy) {
+              res.send(false);
+          } else {
+            res.send(enemy.username);
+          }
+      })
+  });
+
   app.put("/api/turn", isLoggedIn, function(req, res) {
     var attack = req.body.attack.split(",");
     var move = req.body.move.split(",");

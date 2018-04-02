@@ -119,19 +119,31 @@
     left: 55%;
     top: -120px
 }
+
 #logoutDash {
     left: 55%;
-    top: -160px;
+    top: -150px;
 }
 
 #textStyle {
     font-family: 'Fugaz One', cursive;
-
+    margin-top: -5px;
 }
 
 #dashboard {
     font-family: 'Fugaz One', cursive;
 
+}
+
+#RoomInfo {
+    
+    width: 300px;
+    height: 100px;
+    margin-top: 5px;    
+}
+
+#mostWins {
+    margin-top: 10px;
 }
 
 /*CSS for Gameboard */
@@ -142,12 +154,12 @@
     border-radius: 25px;
     background: whitesmoke;
     padding: 20px;
-    height: 420px;
+    width: 300px;
+    height: 400px;
     position: absolute;
     left: 38%;
-    top: 20%;
     box-shadow: 10px 10px 5px #888888;
-    margin-top: 40px;
+    margin-top: -20px;
 }
 
 /* CSS for Gameboard Handlebar */
@@ -214,7 +226,7 @@ li {
     text-align: center;
     font-family: 'Fugaz One', cursive;
     font-size: 12px;
-
+    
 }
 
 .board-btn {
