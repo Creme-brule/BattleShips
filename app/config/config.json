@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "gothic2",
+    "password": "0000",
     "database": "battleship_DB",
     "host": "127.0.0.1",
     "dialect": "mysql"
