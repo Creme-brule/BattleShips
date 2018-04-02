@@ -2,7 +2,7 @@ var turn = -1;
 var load = true;
 $(function () {
     var path = window.location.pathname.split("/").pop();
-    $("#RoomInfo").append(`<h4 id="dashboard">ROOM ${path}</h4>`);
+    $("#RoomInfo").append(`<h5 id="dashboard">ROOM ${path}</h5>`);
     doPoll();
     function doPoll(){
         console.log("poll");
@@ -94,7 +94,7 @@ $(function () {
                         setTimeout(doPoll, 5000);
                         return $("#game-board").append($("<button id='turn'>WAITING FOR PLAYER 2!</button>")); 
                     }
-                    $("#game-board").append($("<button id='submit'>Submit Move</button>"));                    
+                    $("#game-board").append($("<button id='submit'>SUBMIT MOVE</button>"));                    
                 }
                 else {
                     $("#game-board").append($("<button id='turn'>NOT YOUR TURN</button>"));
@@ -107,7 +107,7 @@ $(function () {
             if (load) {
                 $.get(`/enemy/${path}/${localStorage.getItem("userId")}`, function (data) {
                     if (data){
-                        $("#RoomInfo").append(`<h4 id="textStyle">OPPONENT: ${data}</h4>`);
+                        $("#RoomInfo").append(`<h6 id="textStyle">OPPONENT: ${data}</h6>`);
                         load = false;
                     }
                 });
