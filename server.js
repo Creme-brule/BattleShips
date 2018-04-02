@@ -42,7 +42,11 @@ app.get("/", function(req, res) {
   res.send("Welcome to Passport with Sequelize");
 });
 
+<<<<<<< HEAD
 models.sequelize.sync({force:true}).then(function() {
+=======
+models.sequelize.sync().then(function() {
+>>>>>>> 2e9560b25f47939fca4cbb8667a886a45ff34b77
   app.listen(PORT, function() {
     console.log("App listening at PORT: " + PORT);
   });
