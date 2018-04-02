@@ -20,7 +20,7 @@
     margin-top: 30px;
 }
 
-#button1, #button2, #button3, #room-join, #createRoom, #roomList {
+#button1, #button2, #button3, .room-join, #createRoom, #roomList {
     border-radius: 5px;
     font-family: 'Fugaz One', cursive;
 }
