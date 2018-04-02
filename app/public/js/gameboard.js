@@ -112,7 +112,7 @@ $(function () {
                     }
                 });
             }
-            setTimeout(doPoll, 60000) 
+            //setTimeout(doPoll, 60000) 
         });
     }
     $(document).on("click", ".board-btn", function (event) {
