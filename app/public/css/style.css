@@ -184,7 +184,7 @@ li {
     background-position: center;
 }
 
-#enemy-attack {
+.enemy-attack {
     background-image: url("../images/splash.gif"), url("../images/water.gif");
     background-repeat: no-repeat, repeat;
     background-position: center;

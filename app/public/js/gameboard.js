@@ -71,7 +71,7 @@ $(function () {
                             $btn.attr("title", coords);
                             $li.append($btn);
                             if (x == data.enemy_attackx && y == data.enemy_attacky) {
-                                $btn.attr("id", "enemy-attack");
+                                $btn.addClass("enemy-attack");
                             }
                             if (data.player_attack_close && (x == data.player_attackx || y == data.player_attacky)){
                                 $btn.addClass("attack-close");
