@@ -5,7 +5,9 @@ $(function () {
         console.log("poll");
         $.get("/api/"+localStorage.getItem("userId"), function (data) {
             console.log(data);
-            if (data == "Game Over") location.href = "/";
+            if (data == "Game Over") {
+                location.href = "/lose"
+            }
         }).then(function (data) {
             var directions = ["LEFT", "UP", "STAY", "DOWN", "RIGHT"];
             if (data.turns > turn) {
@@ -68,6 +70,12 @@ $(function () {
                             $btn.addClass("water");
                             $btn.attr("title", coords);
                             $li.append($btn);
+                            if (x == data.enemy_attackx && y == data.enemy_attacky) {
+                                $btn.attr("id", "enemy-attack");
+                            }
+                            if (data.player_attack_close && (x == data.player_attackx || y == data.player_attacky)){
+                                $btn.addClass("attack-close");
+                            }
                             if (moves.includes(coords)) {
                                 let $movebtn = $("<button>");
                                 let $moveli = $("<li>");
@@ -138,8 +146,14 @@ $(function () {
                     move: move,
                     playerid: localStorage.getItem("userId")
                 }
-            }).then(function(){
-                doPoll();
+            }).then(function(data){
+                console.log("test" + data);
+                if (data == "Win") {
+                    location.href = "/win"
+                }
+                else {
+                    doPoll();
+                }
             });
         }
     });
