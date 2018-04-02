@@ -1,0 +1,23 @@
+{
+  "name": "batlleships_test",
+  "version": "1.0.0",
+  "description": "Basic Login Check",
+  "main": "testing.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "automock": false,
+    "verbose": true,
+    "collectCoverageFrom": [
+      "testing.js"
+    ],
+    "collectCoverage": false
+  },
+  "devDependencies": {
+    "jest": "^21.1.0",
+    "nightmare": "^2.10.0"
+  }
+}
