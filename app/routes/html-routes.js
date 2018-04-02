@@ -6,6 +6,14 @@ module.exports = function(app) {
     res.render("gameboard", {});
   });
 
+  app.get("/win", isLoggedIn, function(req, res) {
+    res.render("win", {});
+  });
+
+  app.get("/lose", isLoggedIn, function(req, res) {
+    res.render("lose", {});
+  })
+
   app.get("/dashboard/rooms", isLoggedIn,function(req, res) {
     db.Room
       .findAll({
