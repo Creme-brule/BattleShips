@@ -90,6 +90,7 @@
     margin-top: 40px;
 }
 
+
 #losePopUp, #winPopUp {
     margin-left: auto;
     margin-right: auto;
@@ -105,19 +106,30 @@
 
 
 #logoutGame {
-    left: 99%;
+    left: 100%;
     top: -420px;
+
 }
 
-#toDash, #logoutRoom { 
-    left: 55%;
-    top: -160px
+#toDash { 
+    left: 68.5%;
+    top: 27%;
+    margin-top: 19px;
+    position: fixed;
+
+}
+
+#logoutRoom {
+    left: 68.5%;
+    top: 16%;
+    margin-top: 36px;
+    position: fixed;
 }
 
 
 #logoutRoom2, #toDash2 {
     left: 55%;
-    top: -120px
+    top: -120px;
 }
 
 #logoutDash {
@@ -132,7 +144,6 @@
 
 #dashboard {
     font-family: 'Fugaz One', cursive;
-
 }
 
 #RoomInfo {
@@ -253,7 +264,8 @@ li {
     border-radius: 5px;
     color: white;
     height: 50px;
-    width: 100px;
+    margin-left: 50px;
+    width: 150px;
     text-align: center;
     font-family: 'Fugaz One', cursive;
 
@@ -264,6 +276,7 @@ li {
     border-radius: 5px;
     color: white;
     height: 50px;
+    margin-left: 50px;
     width: 150px;
     text-align: center;
     font-family: 'Fugaz One', cursive;
